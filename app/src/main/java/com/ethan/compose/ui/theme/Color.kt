@@ -11,6 +11,8 @@ val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
 
 val Black = Color(0xFF000000) //纯黑
+val Black0C0C0F = Color(0xFF0C0C0F)
+val Black0C0C0F60 = Color(0x990C0C0F)
 
 val Gray = Color(0xFF808080) //灰色
 val DarkGray = Color(0xFFA9A9A9) //深灰色
