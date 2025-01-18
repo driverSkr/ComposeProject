@@ -70,9 +70,13 @@ dependencies {
 
     //图片加载库，基于协程开发
     implementation("io.coil-kt:coil-compose:2.7.0")
-    /// Jetpack Media3 ExoPlayer
+    // Jetpack Media3 ExoPlayer
     implementation ("androidx.media3:media3-exoplayer:1.3.1")
     implementation ("androidx.media3:media3-ui:1.3.1")
     implementation ("androidx.media3:media3-common:1.3.1")
+    //okhttp3
+    implementation ("com.squareup.okhttp3:okhttp:4.12.0")
+    //工具库
+    implementation ("com.blankj:utilcode:1.30.7")
 
 }
