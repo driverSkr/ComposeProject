@@ -18,6 +18,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ethan.compose.ui.theme.ComposeProjectTheme
+import com.ethan.compose.view.work.removeTest.TestActivity
 import com.ethan.compose.widget.ButtonActivity
 import com.ethan.compose.widget.ImageActivity
 import com.ethan.compose.widget.ProgressIndicatorActivity
@@ -74,6 +75,12 @@ fun ExampleCode() {
             context.startActivity(Intent(context, ProgressIndicatorActivity::class.java))
         }) {
             Text(text = "ProgressIndicator")
+        }
+
+        Button(onClick = {
+            context.startActivity(Intent(context, TestActivity::class.java))
+        }) {
+            Text(text = "Test")
         }
     }
 }

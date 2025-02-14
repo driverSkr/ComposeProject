@@ -15,6 +15,9 @@
         android:theme="@style/Theme.ComposeProject"
         tools:targetApi="31">
         <activity
+            android:name=".view.work.removeTest.TestActivity"
+            android:exported="false" />
+        <activity
             android:name=".widget.ProgressIndicatorActivity"
             android:exported="false" />
         <activity
