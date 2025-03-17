@@ -46,7 +46,9 @@ fun TabWithSubViews() {
             .collect { firstVisibleItemIndex ->
                 if (firstVisibleItemIndex != -1) {
                     val visibleItem = allTextItems[firstVisibleItemIndex]
-                    val newTabIndex = tabDataSource.indexOfFirst { it.id == visibleItem.tabId }
+                    val newTabIndex = tabDataSource.indexOfFirst {
+                        it.textItems.contains(visibleItem)
+                    }
                     if (newTabIndex != -1 && newTabIndex != selectedTabIndex) {
                         selectedTabIndex = newTabIndex
                     }
@@ -69,7 +71,9 @@ fun TabWithSubViews() {
                     onClick = {
                         selectedTabIndex = index
                         // 找到当前标签页的第一个 TextItem 在 allTextItems 中的索引
-                        val startIndex = allTextItems.indexOfFirst { it.id == tabData.textItems.first().id }
+                        val startIndex = allTextItems.indexOfFirst {
+                            tabData.textItems.contains(it)
+                        }
                         if (startIndex != -1) {
                             scope.launch {
                                 lazyListState.scrollToItem(startIndex)
