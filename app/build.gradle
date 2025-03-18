@@ -25,9 +25,118 @@ android {
         }
     }
 
+    //打包输出路径配置
+    android.applicationVariants.configureEach { variant ->
+        variant.outputs.configureEach { output ->
+            if (variant.buildType.name != 'release') {
+                return
+            }
+
+            variant.buildConfigField("boolean", "isVideoTest", project.hasProperty('isVideoTest') ? project.isVideoTest : "false")
+            String version = variant.versionName
+            String code = variant.versionCode
+            def date = new Date().format("yyyy-MM-dd")
+
+            def taskNames = gradle.startParameter.taskNames
+
+            println("当前任务名字 -> ${taskNames}")
+            if (!taskNames.isEmpty()) {
+                if (taskNames.first().startsWith("bundle")) {
+                    outputFileName = "ethan_compose_" + version + "_" + variant.flavorName + ".aab"
+                } else {
+                    outputFileName = "ethan_compose_" + version + "_" + variant.flavorName + ".apk"
+                }
+            }
+            println("输出文件名是 -> ${outputFileName}")
+
+
+            // 处理 AAB 输出
+            tasks.register("copyAab${variant.name.capitalize()}") {
+                doLast {
+                    def outputDir = new File("D:/output/android/ethan_compose/aab/${date}/ethan_compose_${version}/${code}")
+                    outputDir.mkdirs()
+
+                    copy {
+                        var aabFile = fileTree("${project.projectDir}/build/outputs/bundle").matching {
+                            include "**/*.aab"  // 匹配所有 .aab 文件
+                            exclude "**/*debug*.aab"        // 排除文件路径中包含 debug 的 .aab 文件
+                        }.files
+                        println("aab  from -> ${aabFile}")
+                        println("aab  to   -> ${outputDir}")
+                        from aabFile
+                        into outputDir
+                        // 重命名文件
+                        eachFile { file ->
+                            def outputFileName = "ethan_compose_${version}_(${code})_${variant.flavorName}.aab"
+                            file.name = outputFileName  // 设置新文件名
+                        }
+                        include "*.aab"
+                        duplicatesStrategy DuplicatesStrategy.EXCLUDE
+                    }
+                }
+            }
+
+            // 处理 APK 输出
+            tasks.register("copyApk${variant.name.capitalize()}") {
+                doLast {
+                    def outputDir = new File("D:/output/android/ethan_compose/apk/${date}/ethan_compose_${version}")
+                    outputDir.mkdirs()
+
+                    copy {
+                        def fileList = variant.outputs.collect { it.outputFile }
+                        println("apk  from -> ${fileList}")
+                        println("apk  to   -> ${outputDir}")
+                        from fileList
+                        into outputDir
+                        include "*.apk"
+                    }
+                }
+            }
+
+            // 将复制任务添加到构建依赖中
+            if (tasks.findByName("bundle${variant.name.capitalize()}")) {
+                tasks.named("bundle${variant.name.capitalize()}").configure {
+                    finalizedBy "copyAab${variant.name.capitalize()}"
+                }
+            }
+            if (tasks.findByName("assemble${variant.name.capitalize()}")) {
+                tasks.named("assemble${variant.name.capitalize()}").configure {
+                    finalizedBy "copyApk${variant.name.capitalize()}"
+                }
+            }
+        }
+    }
+
     buildTypes {
         release {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    flavorDimensions = ["appConfig"]
+    productFlavors {
+        //正式版
+        prodVersion {
+            dimension "appConfig"
+            manifestPlaceholders = ['useHttp': false]
+            buildConfigField("boolean", "isVideoTest", "false")
+            proguardFile 'log-proguard-rules.pro' //正式版本混淆掉日志
+        }
+        //内网版
+        innerVersion {
+            dimension "appConfig"
+            manifestPlaceholders = ['useHttp': true]
+            buildConfigField("boolean", "isVideoTest", "false")
+        }
+        //开发版
+        devVersion {
+            dimension "appConfig"
+            manifestPlaceholders = ['useHttp': false]
+            buildConfigField("boolean", "isVideoTest", "false")
+        }
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
         }
     }
     compileOptions {
@@ -40,6 +149,7 @@ android {
     buildFeatures {
         compose true
         viewBinding true
+        buildConfig true
     }
     composeOptions {
         kotlinCompilerExtensionVersion '1.5.1'
@@ -53,24 +163,38 @@ android {
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.10.1")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
-    implementation("androidx.activity:activity-compose:1.7.0")
-    implementation(platform("androidx.compose:compose-bom:2023.08.00"))
+    //================================compose dependencies area==============================
+    def composeBom = platform("androidx.compose:compose-bom:2024.09.00")
+    implementation composeBom
+    androidTestImplementation composeBom
+    implementation("androidx.activity:activity-compose:1.9.3")
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.9.0")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-    androidTestImplementation(platform("androidx.compose:compose-bom:2023.08.00"))
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+    //================================compose dependencies area==============================
 
+    //================================lifecycle viewmodel==============================
+    implementation "androidx.core:core-ktx:${KTX_CORE_VERSION}"
+    implementation "androidx.appcompat:appcompat:${ANDROID_X_VERSION}"
+    implementation "com.google.android.material:material:${MATERIAL_VERSION}"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:${LIFECYCLE_VERSION}"
+//    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${LIFECYCLE_VERSION}"
+//    implementation "androidx.lifecycle:lifecycle-livedata-ktx:${LIFECYCLE_VERSION}"
+//    implementation "androidx.lifecycle:lifecycle-process-ktx:${LIFECYCLE_VERSION}"
+
+    implementation "com.google.code.gson:gson:${GSON_VERSION}"
+    implementation "com.blankj:utilcode:${UTILS_VERSION}"
+    implementation "com.squareup.retrofit2:retrofit:${RETROFIT_VERSION}"
+    implementation "com.squareup.retrofit2:converter-gson:${RETROFIT_VERSION}"
+
+    //=========================================libs=========================================
+    implementation project(path: ':Libs:Base')
+
+    //=========================================library=========================================
     //图片加载库，基于协程开发
     implementation("io.coil-kt:coil-compose:2.7.0")
     // Jetpack Media3 ExoPlayer
