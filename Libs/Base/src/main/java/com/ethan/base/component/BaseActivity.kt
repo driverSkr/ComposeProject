@@ -25,10 +25,7 @@ import com.ethan.base.widget.progress.ProgressSupport
 import com.ethan.base.widget.toast.BaseToast
 import kotlin.coroutines.suspendCoroutine
 
-/**
- * Author: loren
- * Date: 2021/2/21
- */
+
 private const val TAG = "BaseActivity"
 
 open class BaseActivity : AppCompatActivity(), ProgressSupport {

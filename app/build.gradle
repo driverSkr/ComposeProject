@@ -193,6 +193,7 @@ dependencies {
 
     //=========================================libs=========================================
     implementation project(path: ':Libs:Base')
+    implementation project(path: ':Libs:Utils:Permission')
 
     //=========================================library=========================================
     //图片加载库，基于协程开发
@@ -205,5 +206,7 @@ dependencies {
     implementation ("com.squareup.okhttp3:okhttp:4.12.0")
     //工具库
     implementation ("com.blankj:utilcode:1.30.7")
+
+    implementation "com.github.skydoves:bundler:1.0.4"
 
 }

@@ -1,5 +1,6 @@
 package com.ethan.compose
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -12,29 +13,45 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.ethan.base.component.BaseActivityVB
+import com.ethan.compose.base.BaseActivityVBind
+import com.ethan.compose.databinding.LayoutComposeContainerBinding
 import com.ethan.compose.ui.theme.ComposeProjectTheme
+import com.ethan.compose.ui.theme.Transparent
 import com.ethan.compose.view.work.removeTest.TestActivity
 import com.ethan.compose.widget.ButtonActivity
 import com.ethan.compose.widget.ImageActivity
 import com.ethan.compose.widget.ProgressIndicatorActivity
 import com.ethan.compose.widget.TextActivity
 import com.ethan.compose.widget.TextFieldActivity
+import com.skydoves.bundler.intentOf
 
-class MainActivity : ComponentActivity() {
+class MainActivity : BaseActivityVBind<LayoutComposeContainerBinding>() {
+
+    companion object {
+        fun launch(context: Context) {
+            context.intentOf<MainActivity> {
+                startActivity(context)
+            }
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
-            ComposeProjectTheme {
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    ExampleCode()
+        binding.composeView.apply {
+            setContent {
+                CompositionLocalProvider {
+                    ComposeProjectTheme {
+                        Surface(modifier = Modifier.fillMaxSize(), color = Transparent) {
+                            ExampleCode()
+                        }
+                    }
                 }
             }
         }
@@ -42,6 +59,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
+@Preview
 fun ExampleCode() {
     val context = LocalContext.current
     Column(modifier = Modifier.padding(all = 10.dp)) {
@@ -81,19 +99,6 @@ fun ExampleCode() {
             context.startActivity(Intent(context, TestActivity::class.java))
         }) {
             Text(text = "Test")
-        }
-    }
-}
-
-@Preview
-@Composable
-fun PreviewContent() {
-    ComposeProjectTheme {
-        Surface(
-            modifier = Modifier.fillMaxSize(),
-            color = MaterialTheme.colorScheme.background
-        ) {
-            ExampleCode()
         }
     }
 }
