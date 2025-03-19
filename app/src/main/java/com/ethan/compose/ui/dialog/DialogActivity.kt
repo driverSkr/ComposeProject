@@ -1,4 +1,4 @@
-package com.ethan.compose.ui.component
+package com.ethan.compose.ui.dialog
 
 import android.content.Context
 import android.os.Bundle
@@ -10,14 +10,14 @@ import com.ethan.compose.base.BaseActivityVBind
 import com.ethan.compose.databinding.LayoutComposeContainerBinding
 import com.ethan.compose.theme.ComposeProjectTheme
 import com.ethan.compose.theme.Transparent
-import com.ethan.compose.ui.component.page.ComponentPage
+import com.ethan.compose.ui.dialog.page.DialogPage
 import com.skydoves.bundler.intentOf
 
-class ComponentActivity : BaseActivityVBind<LayoutComposeContainerBinding>() {
+class DialogActivity : BaseActivityVBind<LayoutComposeContainerBinding>() {
 
     companion object {
         fun launch(context: Context) {
-            context.intentOf<ComponentActivity> {
+            context.intentOf<DialogActivity> {
                 startActivity(context)
             }
         }
@@ -29,7 +29,7 @@ class ComponentActivity : BaseActivityVBind<LayoutComposeContainerBinding>() {
                 CompositionLocalProvider {
                     ComposeProjectTheme {
                         Surface(modifier = Modifier.fillMaxSize(), color = Transparent) {
-                            ComponentPage()
+                            DialogPage()
                         }
                     }
                 }
