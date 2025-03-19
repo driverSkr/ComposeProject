@@ -1,4 +1,4 @@
-package com.ethan.compose.ui.theme
+package com.ethan.compose.theme
 
 import androidx.compose.ui.graphics.Color
 
@@ -13,15 +13,36 @@ val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
 
 val Black = Color(0xFF000000) //纯黑
+val Black80 = Color(0xCC000000)
+val Black60 = Color(0x99000000)
+val Black40 = Color(0x66000000)
+val Black10 = Color(0x1A000000)
+val Black8 = Color(0x14000000)
+val Black_24252C = Color(0xFF24252C)
+val Black151515 = Color(0xFF151515)
+val Black242427 = Color(0xFF242427)
+val Black2E1000 = Color(0xFF2E1000)
 val Black0C0C0F = Color(0xFF0C0C0F)
 val Black0C0C0F60 = Color(0x990C0C0F)
 
 val Gray = Color(0xFF808080) //灰色
 val DarkGray = Color(0xFFA9A9A9) //深灰色
-val LightGrey = Color(0xFFD3D3D3) //浅灰色
+val LightGray = Color(0xFFD3D3D3) //浅灰色
 
 val White = Color(0xFFFFFFFF) //纯白
-val White10 = Color(0x1AFFFFFF) //纯白
+val White90 = Color(0xE6FFFFFF)
+val White80 = Color(0xCCFFFFFF)
+val White70 = Color(0xB3FFFFFF)
+val White60 = Color(0x99FFFFFF)
+val White50 = Color(0x80FFFFFF)
+val White40 = Color(0x66FFFFFF)
+val White30 = Color(0x4DFFFFFF)
+val White24 = Color(0x3DFFFFFF)
+val White20 = Color(0x33FFFFFF)
+val White16 = Color(0x29FFFFFF)
+val White10 = Color(0x1AFFFFFF)
+val White8 = Color(0x14FFFFFF)
+val White4 = Color(0x0AFFFFFF)
 
 val Brown = Color(0xFFA52A2A) //棕色
 

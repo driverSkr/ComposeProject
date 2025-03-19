@@ -1,4 +1,4 @@
-package com.ethan.compose.view
+package com.ethan.compose.custom.view
 
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.animateContentSize

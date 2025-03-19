@@ -1,4 +1,4 @@
-package com.ethan.compose.view.work.removeTest
+package com.ethan.compose.work
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement

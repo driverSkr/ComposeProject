@@ -1,4 +1,4 @@
-package com.ethan.compose.view.work
+package com.ethan.compose.custom.widget
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
@@ -31,10 +31,10 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import com.ethan.compose.R
-import com.ethan.compose.ui.theme.Black
-import com.ethan.compose.ui.theme.Black0C0C0F
-import com.ethan.compose.ui.theme.Black0C0C0F60
-import com.ethan.compose.ui.theme.White
+import com.ethan.compose.theme.Black
+import com.ethan.compose.theme.Black0C0C0F
+import com.ethan.compose.theme.Black0C0C0F60
+import com.ethan.compose.theme.White
 
 @SuppressLint("ComposableNaming")
 @Composable

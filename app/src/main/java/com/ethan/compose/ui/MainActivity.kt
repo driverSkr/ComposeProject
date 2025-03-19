@@ -1,36 +1,29 @@
-package com.ethan.compose
+package com.ethan.compose.ui
 
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.Button
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.ethan.base.component.BaseActivityVB
 import com.ethan.compose.base.BaseActivityVBind
 import com.ethan.compose.databinding.LayoutComposeContainerBinding
-import com.ethan.compose.ui.theme.ComposeProjectTheme
-import com.ethan.compose.ui.theme.Transparent
-import com.ethan.compose.view.work.removeTest.TestActivity
-import com.ethan.compose.widget.ButtonActivity
-import com.ethan.compose.widget.ImageActivity
-import com.ethan.compose.widget.ProgressIndicatorActivity
-import com.ethan.compose.widget.TextActivity
-import com.ethan.compose.widget.TextFieldActivity
+import com.ethan.compose.theme.ComposeProjectTheme
+import com.ethan.compose.theme.Transparent
+import com.ethan.compose.ui.component.ComponentActivity
+import com.ethan.compose.work.TestActivity
 import com.skydoves.bundler.intentOf
 
 class MainActivity : BaseActivityVBind<LayoutComposeContainerBinding>() {
@@ -62,38 +55,8 @@ class MainActivity : BaseActivityVBind<LayoutComposeContainerBinding>() {
 @Preview
 fun ExampleCode() {
     val context = LocalContext.current
-    Column(modifier = Modifier.padding(all = 10.dp)) {
-        Text(text = "基础组件", modifier = Modifier.align(Alignment.CenterHorizontally))
-
-        Button(onClick = {
-            context.startActivity(Intent(context, TextActivity::class.java))
-        }) {
-            Text(text = "Text")
-        }
-
-        Button(onClick = {
-            context.startActivity(Intent(context, ButtonActivity::class.java))
-        }) {
-            Text(text = "Button")
-        }
-
-        Button(onClick = {
-            context.startActivity(Intent(context, TextFieldActivity::class.java))
-        }) {
-            Text(text = "TextField")
-        }
-
-        Button(onClick = {
-            context.startActivity(Intent(context, ImageActivity::class.java))
-        }) {
-            Text(text = "Image")
-        }
-
-        Button(onClick = {
-            context.startActivity(Intent(context, ProgressIndicatorActivity::class.java))
-        }) {
-            Text(text = "ProgressIndicator")
-        }
+    Column(modifier = Modifier.statusBarsPadding().padding(horizontal =  10.dp)) {
+        Text(text = "基础组件", modifier = Modifier.align(Alignment.CenterHorizontally).clickable { ComponentActivity.launch(context) })
 
         Button(onClick = {
             context.startActivity(Intent(context, TestActivity::class.java))

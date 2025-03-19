@@ -44,6 +44,7 @@ open class BaseActivity : AppCompatActivity(), ProgressSupport {
         contentLayout = findViewById(R.id.view_content)
     }
 
+    //透明状态栏
     @Suppress("DEPRECATION")
     private fun fitStatusBar() {
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN

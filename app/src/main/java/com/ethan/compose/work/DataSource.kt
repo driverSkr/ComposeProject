@@ -1,4 +1,4 @@
-package com.ethan.compose.view.work.removeTest
+package com.ethan.compose.work
 
 data class TextItem(
     val id: Int,

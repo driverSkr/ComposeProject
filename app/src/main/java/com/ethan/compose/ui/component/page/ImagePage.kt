@@ -1,17 +1,11 @@
-package com.ethan.compose.widget
+package com.ethan.compose.ui.component.page
 
 import android.graphics.BitmapFactory
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -24,30 +18,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.ethan.compose.R
-import com.ethan.compose.ui.theme.ComposeProjectTheme
 
-
+@Composable
+@Preview
 /**
  * Image 对应View中的 ImageView
  */
-class ImageActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            ComposeProjectTheme {
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    ImageExampleCode()
-                }
-            }
-        }
-    }
-}
-
-@Composable
-fun ImageExampleCode() {
+fun ImagePage() {
     Column(modifier = Modifier.padding(all = 10.dp)) {
         Text(text = "基本使用")
         Image(painter = painterResource(id = R.mipmap.banner_01), contentDescription = "A woman")
@@ -66,18 +43,5 @@ fun ImageExampleCode() {
         Spacer(modifier = Modifier.height(10.dp))
         Text(text = "使用网络图片")
         AsyncImage(model = "https://img-blog.csdnimg.cn/20200401094829557.jpg", contentDescription = "First line of code")
-    }
-}
-
-@Preview
-@Composable
-fun ImagePreviewContent() {
-    ComposeProjectTheme {
-        Surface(
-            modifier = Modifier.fillMaxSize(),
-            color = MaterialTheme.colorScheme.background
-        ) {
-            ImageExampleCode()
-        }
     }
 }
