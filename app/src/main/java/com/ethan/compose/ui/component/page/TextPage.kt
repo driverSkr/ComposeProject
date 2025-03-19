@@ -2,6 +2,7 @@ package com.ethan.compose.ui.component.page
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
@@ -28,7 +29,7 @@ fun TextPage() {
         mainBtn = { /*TODO*/ },
         secondaryBtn = {})
 
-    Column(modifier = Modifier.padding(all = 10.dp)) {
+    Column(modifier = Modifier.fillMaxSize().padding(all = 10.dp)) {
         Text(
             text = "This is Text",
             color = Color.Blue,

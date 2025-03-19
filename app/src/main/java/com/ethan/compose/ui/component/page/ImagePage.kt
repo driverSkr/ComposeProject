@@ -4,6 +4,7 @@ import android.graphics.BitmapFactory
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
@@ -25,7 +26,7 @@ import com.ethan.compose.R
  * Image 对应View中的 ImageView
  */
 fun ImagePage() {
-    Column(modifier = Modifier.padding(all = 10.dp)) {
+    Column(modifier = Modifier.fillMaxSize().padding(all = 10.dp)) {
         Text(text = "基本使用")
         Image(painter = painterResource(id = R.mipmap.banner_01), contentDescription = "A woman")
 

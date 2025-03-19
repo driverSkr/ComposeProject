@@ -56,7 +56,12 @@ class MainActivity : BaseActivityVBind<LayoutComposeContainerBinding>() {
 fun ExampleCode() {
     val context = LocalContext.current
     Column(modifier = Modifier.statusBarsPadding().padding(horizontal =  10.dp)) {
-        Text(text = "基础组件", modifier = Modifier.align(Alignment.CenterHorizontally).clickable { ComponentActivity.launch(context) })
+
+        Button(onClick = {
+            ComponentActivity.launch(context)
+        }) {
+            Text(text = "基础组件")
+        }
 
         Button(onClick = {
             context.startActivity(Intent(context, TestActivity::class.java))
