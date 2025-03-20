@@ -85,7 +85,8 @@ fun rememberLoginDialog(context: Context): SheetState {
     var isPhoneValid by remember { mutableStateOf(true) } // 手机号是否合法
     var isChecked by remember { mutableStateOf(false) } // 是否勾选协议
     val btnText = if (isCounting) "${countdown}s后重发" else "获取验证码"
-    val selectState = if (isChecked) R.drawable.svg_icon_selected else R.drawable.svg_icon_not_selected
+    val selectState =
+        if (isChecked) R.drawable.svg_icon_selected else R.drawable.svg_icon_not_selected
 
     // 启动倒计时
     LaunchedEffect(isCounting) {
@@ -116,35 +117,47 @@ fun rememberLoginDialog(context: Context): SheetState {
             dragHandle = null,
             shape = RoundedCornerShape(topStart = 12.dp, topEnd = 12.dp),
         ) {
-            Column(modifier = Modifier
-                .fillMaxWidth()
-                .height(IntrinsicSize.Min)
-                .navigationBarsPadding()
-                .imePadding()
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(IntrinsicSize.Min)
+                    .navigationBarsPadding()
+                    .imePadding()
             ) {
                 Box(modifier = Modifier.fillMaxWidth()) {
-                    Image(painter = painterResource(R.drawable.svg_icon_close), contentDescription = null, modifier = Modifier
-                        .align(Alignment.TopEnd)
-                        .padding(top = 12.dp, end = 12.dp, bottom = 4.dp)
-                        .clickable {
-                            scope.launch(Dispatchers.Default) {
-                                sheetState.hide()
+                    Image(painter = painterResource(R.drawable.svg_icon_close),
+                        contentDescription = null,
+                        modifier = Modifier
+                            .align(Alignment.TopEnd)
+                            .padding(top = 12.dp, end = 12.dp)
+                            .clickable {
+                                scope.launch(Dispatchers.Default) {
+                                    sheetState.hide()
+                                }
                             }
-                        }
                     )
                 }
 
-                Column(modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 24.dp)
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 24.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Text("登录", fontSize = 20.sp, color = Black0C0C0F, textAlign = TextAlign.Center, style = NO_PADDING_TEXT_STYLE.copy(fontWeight = FontWeight.W900), modifier = Modifier.fillMaxWidth())
+                    Image(
+                        painter = painterResource(id = R.mipmap.ic_launcher_foreground),
+                        contentDescription = null
+                    )
                     Spacer(modifier = Modifier.height(32.dp))
 
                     // 手机号输入框
                     TextField(
                         value = phone,
-                        textStyle = TextStyle(color = Black0C0C0F, fontSize = 20.sp, fontWeight = FontWeight.W500),
+                        textStyle = TextStyle(
+                            color = Black0C0C0F,
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight.W500
+                        ),
                         onValueChange = { newValue ->
                             if (newValue.length <= 11) { // 限制输入长度为 11 位
                                 // 过滤非数字字符
@@ -153,7 +166,14 @@ fun rememberLoginDialog(context: Context): SheetState {
                                 isPhoneValid = validatePhoneNumber(phone) // 校验手机号
                             }
                         }, // 只保留数字
-                        placeholder = { Text("请输入手机号", fontSize = 16.sp, color = Black0C0C0F_30, style = NO_PADDING_TEXT_STYLE.copy(fontWeight = FontWeight.W500)) },
+                        placeholder = {
+                            Text(
+                                "请输入手机号",
+                                fontSize = 16.sp,
+                                color = Black0C0C0F_30,
+                                style = NO_PADDING_TEXT_STYLE.copy(fontWeight = FontWeight.W500)
+                            )
+                        },
                         colors = TextFieldDefaults.colors(
                             focusedContainerColor = Black10, // 聚焦时背景颜色
                             unfocusedContainerColor = Black10, // 未聚焦时背景颜色
@@ -169,7 +189,8 @@ fun rememberLoginDialog(context: Context): SheetState {
                             topStart = CornerSize(12.dp),
                             topEnd = CornerSize(12.dp),
                             bottomStart = CornerSize(12.dp),
-                            bottomEnd = CornerSize(12.dp)),
+                            bottomEnd = CornerSize(12.dp)
+                        ),
                         singleLine = true,
                         leadingIcon = {
                             Row(modifier = Modifier.padding(start = 16.dp)) {
@@ -181,7 +202,15 @@ fun rememberLoginDialog(context: Context): SheetState {
                                     // modifier = Modifier.padding(end = 16.dp)
                                 )
                                 Spacer(modifier = Modifier.width(16.dp))
-                                Spacer(modifier = Modifier.width(1.dp).height(20.dp).background(color = Black0C0C0F_20, shape = RoundedCornerShape(2.dp)))
+                                Spacer(
+                                    modifier = Modifier
+                                        .width(1.dp)
+                                        .height(20.dp)
+                                        .background(
+                                            color = Black0C0C0F_20,
+                                            shape = RoundedCornerShape(2.dp)
+                                        )
+                                )
                                 Spacer(modifier = Modifier.width(16.dp))
                             }
                         },
@@ -203,9 +232,20 @@ fun rememberLoginDialog(context: Context): SheetState {
                     // 验证码输入框
                     TextField(
                         value = verificationCode,
-                        textStyle = TextStyle(color = Black0C0C0F, fontSize = 20.sp, fontWeight = FontWeight.W500),
+                        textStyle = TextStyle(
+                            color = Black0C0C0F,
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight.W500
+                        ),
                         onValueChange = { verificationCode = it },
-                        placeholder = { Text("输入验证码", fontSize = 16.sp, color = Black0C0C0F_30, style = NO_PADDING_TEXT_STYLE.copy(fontWeight = FontWeight.W500)) },
+                        placeholder = {
+                            Text(
+                                "输入验证码",
+                                fontSize = 16.sp,
+                                color = Black0C0C0F_30,
+                                style = NO_PADDING_TEXT_STYLE.copy(fontWeight = FontWeight.W500)
+                            )
+                        },
                         colors = TextFieldDefaults.colors(
                             focusedContainerColor = Black10, // 聚焦时背景颜色
                             unfocusedContainerColor = Black10, // 未聚焦时背景颜色
@@ -221,7 +261,8 @@ fun rememberLoginDialog(context: Context): SheetState {
                             topStart = CornerSize(12.dp),
                             topEnd = CornerSize(12.dp),
                             bottomStart = CornerSize(12.dp),
-                            bottomEnd = CornerSize(12.dp)),
+                            bottomEnd = CornerSize(12.dp)
+                        ),
                         singleLine = true,
                         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number), // 设置键盘类型为数字键盘
                         trailingIcon = {
@@ -231,14 +272,17 @@ fun rememberLoginDialog(context: Context): SheetState {
                                 fontSize = 16.sp,
                                 style = NO_PADDING_TEXT_STYLE.copy(fontWeight = FontWeight.W500),
                                 modifier = Modifier
-                                    .clickable (
+                                    .clickable(
                                         enabled = !isCounting,
                                         onClick = {
                                             if (isPhoneValid && phone.isNotEmpty()) {
                                                 isCounting = true // 开始倒计时
                                                 countdown = 60 // 设置倒计时时间
                                             } else {
-                                                "请输入正确的手机号".showToast(context, ToastType.HINT)
+                                                "请输入正确的手机号".showToast(
+                                                    context,
+                                                    ToastType.HINT
+                                                )
                                             }
                                         }
                                     )
@@ -248,8 +292,17 @@ fun rememberLoginDialog(context: Context): SheetState {
                         modifier = Modifier.fillMaxWidth()
                     )
                     Spacer(modifier = Modifier.height(12.dp))
-                    Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Center) {
-                        Image(painter = painterResource(selectState), contentDescription = null, modifier = Modifier.size(20.dp).padding(end = 4.dp).antiShakeClick { isChecked = !isChecked })
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.Center
+                    ) {
+                        Image(painter = painterResource(selectState),
+                            contentDescription = null,
+                            modifier = Modifier
+                                .size(20.dp)
+                                .padding(end = 4.dp)
+                                .antiShakeClick { isChecked = !isChecked })
                         ClickableText()
                     }
                     Spacer(modifier = Modifier.height(32.dp))
@@ -281,9 +334,16 @@ fun rememberLoginDialog(context: Context): SheetState {
                             }
                         }
                     ) {
-                        Text("登录", fontSize = 19.sp, textAlign = TextAlign.Center, color = White, style = NO_PADDING_TEXT_STYLE.copy(fontWeight = FontWeight.W800), modifier = Modifier.fillMaxWidth())
+                        Text(
+                            "登录",
+                            fontSize = 19.sp,
+                            textAlign = TextAlign.Center,
+                            color = White,
+                            style = NO_PADDING_TEXT_STYLE.copy(fontWeight = FontWeight.W800),
+                            modifier = Modifier.fillMaxWidth()
+                        )
                     }
-                    Spacer(modifier = Modifier.height(24.dp))
+                    Spacer(modifier = Modifier.height(48.dp))
                 }
             }
         }
