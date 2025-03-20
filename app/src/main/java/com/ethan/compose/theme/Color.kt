@@ -11,6 +11,15 @@ val Pink80 = Color(0xFFEFB8C8)
 val Purple40 = Color(0xFF6650a4)
 val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
+val PurpleCEA9FF_10 = Color(0x1ACEA9FF)
+val Purple9B64FF = Color(0xFF9B64FF)
+val PurpleBC5DFF = Color(0xFFBC5DFF)
+val Purple790AC9 = Color(0xFF790AC9)
+val PurpleBE6DFF = Color(0xFFBE6DFF)
+val Purple712FE7 = Color(0xFF712FE7)
+val ColorFF7762_20 = Color(0x33FF7762)
+val Color412D5C_20 = Color(0x33412D5C)
+val Color0XFF37255B = Color(0XFF37255B)
 
 val Black = Color(0xFF000000) //纯黑
 val Black80 = Color(0xCC000000)
@@ -24,6 +33,9 @@ val Black242427 = Color(0xFF242427)
 val Black2E1000 = Color(0xFF2E1000)
 val Black0C0C0F = Color(0xFF0C0C0F)
 val Black0C0C0F60 = Color(0x990C0C0F)
+val Black0C0C0F_40 = Color(0x660C0C0F)
+val Black0C0C0F_30 = Color(0x4D0C0C0F)
+val Black0C0C0F_20 = Color(0x330C0C0F)
 
 val Gray = Color(0xFF808080) //灰色
 val DarkGray = Color(0xFFA9A9A9) //深灰色

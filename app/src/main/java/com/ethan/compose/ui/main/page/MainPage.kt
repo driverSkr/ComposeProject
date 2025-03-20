@@ -9,6 +9,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import com.ethan.compose.custom.view.StatusBarsView
 import com.ethan.compose.ui.component.ComponentActivity
+import com.ethan.compose.ui.custom.CustomActivity
 import com.ethan.compose.ui.dialog.DialogActivity
 import com.ethan.compose.work.TestActivity
 
@@ -28,6 +29,12 @@ fun MainPage() {
             DialogActivity.launch(context)
         }) {
             Text(text = "弹窗组件")
+        }
+
+        Button(onClick = {
+            CustomActivity.launch(context)
+        }) {
+            Text(text = "自定义组件")
         }
 
         Button(onClick = {

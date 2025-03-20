@@ -10,4 +10,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="_0088FF">#FF0088FF</color>
     <color name="_0c0c0f70">#B20C0C0F</color>
+    <color name="_0c0c0f">#0C0C0F</color>
+    <color name="_0c0c0f60">#990C0C0F</color>
 </resources>

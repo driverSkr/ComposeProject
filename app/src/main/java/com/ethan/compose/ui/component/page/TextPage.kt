@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import com.ethan.compose.R
+import com.ethan.compose.base.Constants
 import com.ethan.compose.theme.Black
 import com.ethan.compose.theme.Cyan
 import com.ethan.compose.theme.DarkOrange
@@ -105,7 +106,7 @@ fun ClickableText() {
             val span2 = "隐私政策"
             val click1 = object : ClickableSpan() {
                 override fun onClick(p0: View) {
-                    LaunchUtils.launchWeb(context, "https://www.niuxuezhang.cn/app-html5/hitpaw-video-enhancer-app-terms-and-conditions.html", "用户协议")
+                    LaunchUtils.launchWeb(context, Constants.TERMS_OF_USE, "用户协议")
                 }
 
                 override fun updateDrawState(ds: TextPaint) {
@@ -114,7 +115,7 @@ fun ClickableText() {
             }
             val click2 = object : ClickableSpan() {
                 override fun onClick(p0: View) {
-                    LaunchUtils.launchWeb(context, "https://www.niuxuezhang.cn/app-html5/hitpaw-video-enhancer-app-privacy-policy.html", "隐私政策")
+                    LaunchUtils.launchWeb(context, Constants.PRIVACY_POLICY, "隐私政策")
                 }
 
                 override fun updateDrawState(ds: TextPaint) {
