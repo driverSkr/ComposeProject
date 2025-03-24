@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Compose工程</string>
+
+    <string name="feature_suggestion">功能建议</string>
+    <string name="technical_issues">技术问题</string>
+    <string name="complaint">投诉</string>
+    <string name="purchase_problem">购买问题</string>
+    <string name="refund_consultation">退款咨询</string>
 </resources>
