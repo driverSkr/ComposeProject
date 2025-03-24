@@ -55,6 +55,9 @@ import com.ethan.compose.theme.White40
 fun TextFieldPage() {
 
     val context = LocalContext.current
+    var email by remember { mutableStateOf("") }
+    var feedbackType by remember { mutableStateOf("") }
+    var content by remember { mutableStateOf("") }
 
     val options = listOf(
         context.getString(R.string.feature_suggestion),
@@ -63,10 +66,6 @@ fun TextFieldPage() {
         context.getString(R.string.purchase_problem),
         context.getString(R.string.refund_consultation)
     )
-
-    var email by remember { mutableStateOf("") }
-    var feedbackType by remember { mutableStateOf("") }
-    var content by remember { mutableStateOf("") }
 
     Column(
         modifier = Modifier
