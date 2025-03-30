@@ -9,6 +9,9 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/Components" />
+            <option value="$PROJECT_DIR$/Components/Sharer" />
+            <option value="$PROJECT_DIR$/Components/Sharer/Share" />
             <option value="$PROJECT_DIR$/Libs" />
             <option value="$PROJECT_DIR$/Libs/Base" />
             <option value="$PROJECT_DIR$/Libs/FlowBus" />
