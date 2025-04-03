@@ -17,6 +17,7 @@ import com.ethan.compose.work.TestActivity
 @Preview
 fun MainPage() {
     val context = LocalContext.current
+    //aspectRatio设置宽高比
     Column {
         StatusBarsView("主页", false)
         Button(onClick = {
