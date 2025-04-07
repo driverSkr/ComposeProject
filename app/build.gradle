@@ -196,6 +196,7 @@ dependencies {
     //=========================================libs=========================================
     implementation project(path: ':Libs:Base')
     implementation project(path: ':Libs:Utils:Permission')
+    implementation project(path: ':Libs:NetWork:CompanyLibs')
 
     //=========================================library=========================================
     //图片加载库，基于协程开发
