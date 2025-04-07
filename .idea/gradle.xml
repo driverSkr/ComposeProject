@@ -22,6 +22,7 @@
             <option value="$PROJECT_DIR$/Libs/Utils/File" />
             <option value="$PROJECT_DIR$/Libs/Utils/MediaPicker" />
             <option value="$PROJECT_DIR$/Libs/Utils/Permission" />
+            <option value="$PROJECT_DIR$/Libs/VideoEditing" />
             <option value="$PROJECT_DIR$/app" />
           </set>
         </option>

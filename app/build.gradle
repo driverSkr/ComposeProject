@@ -195,8 +195,13 @@ dependencies {
 
     //=========================================libs=========================================
     implementation project(path: ':Libs:Base')
+    implementation project(path: ':Libs:FlowBus')
+    implementation project(path: ':Libs:VideoEditing')
+    implementation project(path: ':Libs:Utils:File')
+    implementation project(path: ':Libs:Utils:MediaPicker')
     implementation project(path: ':Libs:Utils:Permission')
     implementation project(path: ':Libs:NetWork:CompanyLibs')
+    implementation project(path: ':Components:Sharer:Share')
 
     //=========================================library=========================================
     //图片加载库，基于协程开发
