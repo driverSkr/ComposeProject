@@ -201,6 +201,7 @@ dependencies {
     implementation project(path: ':Libs:Utils:MediaPicker')
     implementation project(path: ':Libs:Utils:Permission')
     implementation project(path: ':Libs:NetWork:CompanyLibs')
+    implementation project(path: ':Libs:NetWork:SunnyLibs')
     implementation project(path: ':Components:Sharer:Share')
 
     //=========================================library=========================================

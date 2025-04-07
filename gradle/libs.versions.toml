@@ -3,3 +3,5 @@ ffmpegKitFullGpl = "6.0-2"
 
 [libraries]
 ffmpeg-kit-full-gpl = { module = "com.arthenica:ffmpeg-kit-full-gpl", version.ref = "ffmpegKitFullGpl" }
+
+[plugins]
