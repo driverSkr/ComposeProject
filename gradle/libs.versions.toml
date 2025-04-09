@@ -1,7 +1,13 @@
 [versions]
 ffmpegKitFullGpl = "6.0-2"
+appcompat = "1.6.1"
+material = "1.9.0"
+kotlin = "1.9.0"
 
 [libraries]
 ffmpeg-kit-full-gpl = { module = "com.arthenica:ffmpeg-kit-full-gpl", version.ref = "ffmpegKitFullGpl" }
+appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
 [plugins]
+kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }

@@ -11,6 +11,7 @@ import com.ethan.compose.custom.view.StatusBarsView
 import com.ethan.compose.ui.component.ComponentActivity
 import com.ethan.compose.ui.custom.CustomActivity
 import com.ethan.compose.ui.dialog.DialogActivity
+import com.ethan.compose.ui.media.AudioRecordActivity
 import com.ethan.compose.work.TestActivity
 
 @Composable
@@ -36,6 +37,12 @@ fun MainPage() {
             CustomActivity.launch(context)
         }) {
             Text(text = "自定义组件")
+        }
+
+        Button(onClick = {
+            AudioRecordActivity.launch(context)
+        }) {
+            Text(text = "多媒体组件")
         }
 
         Button(onClick = {
