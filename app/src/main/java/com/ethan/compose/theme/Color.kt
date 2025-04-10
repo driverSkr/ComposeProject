@@ -38,6 +38,7 @@ val Black0C0C0F_30 = Color(0x4D0C0C0F)
 val Black0C0C0F_20 = Color(0x330C0C0F)
 
 val Gray = Color(0xFF808080) //灰色
+val Grey20 = Color(0x33D9D9D9)
 val DarkGray = Color(0xFFA9A9A9) //深灰色
 val LightGray = Color(0xFFD3D3D3) //浅灰色
 
@@ -59,6 +60,7 @@ val White4 = Color(0x0AFFFFFF)
 val Brown = Color(0xFFA52A2A) //棕色
 
 val Red = Color(0xFFFF0000) //纯红
+val RedFF0048 = Color(0xFFFF0048)
 val DarkRed = Color(0xFF8B0000) //深红色
 
 val Orange = Color(0xFFFFA500) //橙色

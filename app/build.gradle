@@ -170,6 +170,7 @@ dependencies {
     implementation composeBom
     androidTestImplementation composeBom
     implementation("androidx.activity:activity-compose:1.9.3")
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.8.5'
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
@@ -184,7 +185,7 @@ dependencies {
     implementation "androidx.appcompat:appcompat:${ANDROID_X_VERSION}"
     implementation "com.google.android.material:material:${MATERIAL_VERSION}"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:${LIFECYCLE_VERSION}"
-//    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${LIFECYCLE_VERSION}"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${LIFECYCLE_VERSION}"
 //    implementation "androidx.lifecycle:lifecycle-livedata-ktx:${LIFECYCLE_VERSION}"
 //    implementation "androidx.lifecycle:lifecycle-process-ktx:${LIFECYCLE_VERSION}"
 
