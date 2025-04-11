@@ -13,6 +13,9 @@ import com.ethan.compose.ui.media.view.RecordView
 @Composable
 @Preview
 fun AudioRecordPage() {
+
+
+
     Column(modifier = Modifier.fillMaxSize().background(color = Black)) {
         StatusBarsView("录音", true)
 

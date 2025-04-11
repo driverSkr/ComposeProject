@@ -1,6 +1,7 @@
 package com.ethan.compose.ui.main.page
 
 import android.content.Intent
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
@@ -19,6 +20,7 @@ import com.ethan.compose.work.TestActivity
 fun MainPage() {
     val context = LocalContext.current
     //aspectRatio设置宽高比
+    BackHandler {  }
     Column {
         StatusBarsView("主页", false)
         Button(onClick = {

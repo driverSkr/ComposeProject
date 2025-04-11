@@ -41,6 +41,7 @@ fun DialogPage() {
         secondaryBtn = {})
 
     val confirmDialog2 = rememberConfirmDialog(
+        title = "标题",
         content = "你好，弹窗！",
         mainTv = "确认",
         secondaryTv = "取消",

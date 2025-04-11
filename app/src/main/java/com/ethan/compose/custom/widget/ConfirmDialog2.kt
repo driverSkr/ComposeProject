@@ -27,6 +27,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
@@ -43,13 +44,15 @@ import com.ethan.compose.theme.PurpleCEA9FF_10
 import com.ethan.compose.theme.White
 
 @Composable
+@Preview
 fun rememberConfirmDialog(
-    content: String,                            //内容
-    contentAlign: TextAlign = TextAlign.Center,  //内容布局
-    mainTv: String,                             //主按钮内容
-    secondaryTv: String? = null,                //次级按钮内容
-    mainBtn: () -> Unit,                        //主按钮触发方法
-    secondaryBtn: () -> Unit            //次级按钮触发方法
+    title: String = "",                              // 标题
+    content: String = "",                            // 内容
+    mainTv: String = "",                             // 主按钮内容
+    secondaryTv: String = "",                        // 次级按钮内容
+    mainBtn: () -> Unit = {},                        // 主按钮触发方法
+    secondaryBtn: () -> Unit = {},                   // 次级按钮触发方法
+    contentAlign: TextAlign = TextAlign.Center,      // 内容布局
 ): MutableState<Boolean> {
     val confirmDialogState = remember { mutableStateOf(false) }
 
@@ -65,11 +68,15 @@ fun rememberConfirmDialog(
             properties = DialogProperties(dismissOnBackPress = false, dismissOnClickOutside = false)
         ) {
             Card(modifier = Modifier
-                .width(320.dp)
+                .width(360.dp)
                 .wrapContentHeight(),
                 colors = CardColors(containerColor = Color0XFF37255B, contentColor = Black, disabledContainerColor = Color0XFF37255B, disabledContentColor = Black)
             ) {
-                Column(modifier = Modifier.fillMaxWidth().wrapContentHeight().background(brush = diagonalGradientBrush, shape = RoundedCornerShape(12.dp))) {
+                Column(modifier = Modifier
+                    .fillMaxWidth()
+                    .wrapContentHeight()
+                    .background(brush = diagonalGradientBrush, shape = RoundedCornerShape(12.dp))
+                ) {
                     Box(modifier = Modifier
                         .fillMaxWidth()
                         .wrapContentHeight()
@@ -84,12 +91,19 @@ fun rememberConfirmDialog(
                         .fillMaxWidth()
                         .padding(start = 24.dp, end = 24.dp, bottom = 24.dp)
                     ) {
-                        Text(content, fontSize = 14.sp, color = White,textAlign = contentAlign, style = NO_PADDING_TEXT_STYLE.copy(fontWeight = FontWeight.W400), modifier = Modifier.fillMaxWidth())
+
+                        if (title.isNotEmpty()) {
+                            Text(title, fontSize = 16.sp, color = White, textAlign = TextAlign.Center, style = NO_PADDING_TEXT_STYLE.copy(fontWeight = FontWeight.W600), modifier = Modifier.fillMaxWidth().padding(bottom = 8.dp))
+                        }
+
+                        Text(content, fontSize = 14.sp, color = White, textAlign = contentAlign, style = NO_PADDING_TEXT_STYLE.copy(fontWeight = FontWeight.W400), modifier = Modifier.fillMaxWidth())
 
                         Spacer(modifier = Modifier.height(24.dp))
 
-                        Row(modifier = Modifier.fillMaxWidth().wrapContentHeight()) {
-                            if (secondaryTv != null) {
+                        Row(modifier = Modifier
+                            .fillMaxWidth()
+                            .wrapContentHeight()) {
+                            if (secondaryTv.isNotEmpty()) {
                                 Box(modifier = Modifier
                                     .weight(1f)
                                     .height(56.dp)
