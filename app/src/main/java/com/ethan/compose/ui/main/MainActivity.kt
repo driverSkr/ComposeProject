@@ -13,6 +13,12 @@ import com.ethan.compose.theme.Transparent
 import com.ethan.compose.ui.main.page.MainPage
 import com.skydoves.bundler.intentOf
 
+//todo 1.状态同步的几种实现方式（接口回调、livedata、flow、EventBus、BroadcastReceiver、SharedPreferences/DataStore、mutableStateOf）
+//todo 2.音频录制、播放的多种方式
+//todo 3.数据库存储的使用（room）
+//todo 4.视频播放的多种方式（MediaPlayer、ExoPlayer）
+//todo 5.音视频裁剪（ffmpeg）
+//todo 6.项目结构调整（可以按“设置”app设计）
 class MainActivity : BaseActivityVBind<LayoutComposeContainerBinding>() {
 
     companion object {
