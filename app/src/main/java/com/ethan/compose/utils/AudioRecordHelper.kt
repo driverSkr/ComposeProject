@@ -172,7 +172,7 @@ class AudioRecordHelper {
                     val finalPcmFile = mergePcmSegments(outputFile.parentFile!!)
 
                     // 将 PCM 编码为 M4A
-                    AudioCutting.encodePcmToM4a(finalPcmFile, outputFile)
+                    val result = AudioCutting.encodePcmToM4a(finalPcmFile, outputFile)
                     // 清理临时文件
                     recordedPcmSegments.forEach { it.delete() }
                     finalPcmFile?.delete()
@@ -198,6 +198,7 @@ class AudioRecordHelper {
         if (playState != PlayState.PLAYING) return
 
         playState = PlayState.PAUSED
+        Log.d("ethan","pausePlaying 播放状态：${playState.name}")
         audioTrack?.pause()
         playJob?.cancel() // 停止数据读取协程
     }

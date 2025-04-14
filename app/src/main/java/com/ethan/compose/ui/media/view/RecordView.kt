@@ -66,7 +66,7 @@ fun RecordView(modifier: Modifier = Modifier) {
 
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
-    val audioRecorder = remember { AudioRecorder() }
+    val audioRecorder = remember { AudioRecorder(context) }
     var recordState by remember { mutableStateOf(RecordState.NotStarted) }
     var audioPath by remember { mutableStateOf("") }
     val recordPlayBtn = if (audioRecorder.isPlaying) R.drawable.svg_icon_record_play else R.drawable.svg_icon_record_pause

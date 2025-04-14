@@ -6,13 +6,13 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import com.ethan.compose.theme.White
 import com.ethan.compose.utils.AudioRecordHelper
 import java.io.File
 
-//todo 测试代码
 @Composable
 fun AudioControllerUI(controller: AudioRecordHelper) {
     val context = LocalContext.current
@@ -20,6 +20,13 @@ fun AudioControllerUI(controller: AudioRecordHelper) {
     val outputFile = remember {
         File(context.externalCacheDir, "/final_recording_${System.currentTimeMillis()}.m4a")
     }
+
+    DisposableEffect(Unit) {
+        onDispose {
+            controller.release()
+        }
+    }
+
     Column {
         // 播放控制按钮
         Row {

@@ -7,6 +7,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.File
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
 object AudioCutting {
 
@@ -32,23 +34,32 @@ object AudioCutting {
     }
 
     /** 将 PCM 编码为 M4A */
-    fun encodePcmToM4a(pcmFile: File?, outputFile: File) {
-        if (pcmFile == null) return
-        CoroutineScope(Dispatchers.Default).launch {
-            try {
-                // 将命令数组转换为单个字符串
-                val command = "-y -f s16le -ar 44100 -ac 1 -i \"${pcmFile.path}\" " +
-                        "-c:a aac -b:a 128k \"${outputFile.path}\""
+    suspend fun encodePcmToM4a(pcmFile: File?, outputFile: File) = suspendCoroutine {suspendCoroutine ->
+        if (pcmFile == null || !pcmFile.exists()) {
+            suspendCoroutine.resume("failed")
+        } else {
+            // 确保输出目录存在
+            outputFile.parentFile?.mkdirs()
 
-                FFmpegKit.executeAsync(command) { session ->
-                    if (ReturnCode.isSuccess(session.returnCode)) {
-                        Log.d("AudioRecorder", "Encode to M4A success: ${outputFile.path}")
-                    } else {
-                        Log.e("AudioRecorder", "FFmpeg encode failed: ${session.allLogsAsString}")
+            CoroutineScope(Dispatchers.Default).launch {
+                try {
+                    // 将命令数组转换为单个字符串
+                    val command = "-y -f s16le -ar 44100 -ac 1 -i \"${pcmFile.path}\" " +
+                            "-c:a aac -b:a 128k \"${outputFile.path}\""
+
+                    FFmpegKit.executeAsync(command) { session ->
+                        if (ReturnCode.isSuccess(session.returnCode)) {
+                            suspendCoroutine.resume("success")
+                            Log.d("AudioRecorder", "Encode to M4A success: ${outputFile.path}")
+                        } else {
+                            suspendCoroutine.resume("failed")
+                            Log.e("AudioRecorder", "FFmpeg encode failed: ${session.allLogsAsString}")
+                        }
                     }
+                } catch (e: Exception) {
+                    suspendCoroutine.resume("failed")
+                    Log.e("AudioRecorder", "Encoding error: ${e.message}")
                 }
-            } catch (e: Exception) {
-                Log.e("AudioRecorder", "Encoding error: ${e.message}")
             }
         }
     }
