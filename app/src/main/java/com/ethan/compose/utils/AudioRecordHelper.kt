@@ -230,6 +230,14 @@ class AudioRecordHelper {
         stopPlaying()
     }
 
+    fun deleteFile() {
+        currentPcmFile?.delete()
+        mergedPcmFile?.delete()
+        recordedPcmSegments.forEach { it.delete() }
+        currentDurationMs = 0L
+        currentPlayPositionMs = 0L
+    }
+
     /** 从指定位置开始播放 */
     private fun startPlayingFromPosition(startPositionMs: Long) {
         if (mergedPcmFile == null) return

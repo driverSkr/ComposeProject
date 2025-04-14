@@ -28,6 +28,7 @@ fun AudioRecordAudioTrackView() {
             color = White,
         )
 
-        AudioControllerUI(audioRecordHelper)
+//        AudioControllerUI(audioRecordHelper)
+        AudioRecord()
     }
 }
