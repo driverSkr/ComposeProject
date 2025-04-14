@@ -1,14 +1,19 @@
 package com.ethan.compose.utils
 
 import android.annotation.SuppressLint
-import android.media.MediaPlayer
+import android.content.Context
 import android.media.MediaRecorder
+import android.net.Uri
 import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.media3.common.MediaItem
+import androidx.media3.common.PlaybackException
+import androidx.media3.common.Player
+import androidx.media3.exoplayer.ExoPlayer
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -18,9 +23,9 @@ import kotlinx.coroutines.launch
 import java.io.File
 import java.io.IOException
 
-class AudioRecorder {
+class AudioRecorder(private val context: Context) {
     private var recorder: MediaRecorder? = null
-    private var player: MediaPlayer? = null
+    private var exoPlayer: ExoPlayer? = null
     private var timeUpdateJob: Job? = null
 
     // 录音状态
@@ -99,7 +104,6 @@ class AudioRecorder {
             }
         } catch (e: Exception) {
             Log.e("AudioRecorder", "停止录音失败", e)
-            // 即使停止失败也继续清理
         } finally {
             isRecording = false
             recorder = null
@@ -116,29 +120,34 @@ class AudioRecorder {
         if (filePath.isEmpty()) return
 
         try {
-            player?.release() // 释放之前的播放器
+            exoPlayer?.release() // 释放之前的播放器
             currentTime = 0L
             playProgress = 0f
 
-            player = MediaPlayer().apply {
-                setDataSource(filePath)
+            exoPlayer = ExoPlayer.Builder(context).build().apply {
+                val mediaItem = MediaItem.fromUri(Uri.fromFile(File(filePath)))
+                setMediaItem(mediaItem)
                 prepare()
-                totalDuration = duration.toLong()
-                start()
+                totalDuration = duration
+                playWhenReady = true
 
-                setOnCompletionListener {
-                    this@AudioRecorder.isPlaying = false
-                    currentTime = totalDuration
-                    playProgress = 100f
-                    timeUpdateJob?.cancel()
-                    onCompletion()
-                }
+                addListener(object : Player.Listener {
+                    override fun onPlaybackStateChanged(playbackState: Int) {
+                        when (playbackState) {
+                            Player.STATE_ENDED -> {
+                                this@AudioRecorder.isPlaying = false
+                                currentTime = totalDuration
+                                playProgress = 100f
+                                timeUpdateJob?.cancel()
+                                onCompletion()
+                            }
+                        }
+                    }
 
-                setOnErrorListener { _, what, extra ->
-                    val error = Exception("MediaPlayer error: what=$what extra=$extra")
-                    onError(error)
-                    true
-                }
+                    override fun onPlayerError(error: PlaybackException) {
+                        onError(Exception("ExoPlayer error: ${error.message}"))
+                    }
+                })
             }
 
             isPlaying = true
@@ -148,8 +157,8 @@ class AudioRecorder {
             timeUpdateJob = CoroutineScope(Dispatchers.Main).launch {
                 while (isActive && isPlaying) {
                     delay(100)
-                    player?.let {
-                        currentTime = it.currentPosition.toLong()
+                    exoPlayer?.let {
+                        currentTime = it.currentPosition
                         playProgress = (currentTime.toFloat() / totalDuration) * 100
                     }
                 }
@@ -163,9 +172,9 @@ class AudioRecorder {
 
     fun stopPlaying() {
         try {
-            player?.apply {
+            exoPlayer?.apply {
                 if (isPlaying) {
-                    stop()
+                    pause()
                 }
                 release()
             }
@@ -173,7 +182,7 @@ class AudioRecorder {
             Log.e("AudioRecorder", "停止播放失败", e)
         } finally {
             isPlaying = false
-            player = null
+            exoPlayer = null
             timeUpdateJob?.cancel()
             timeUpdateJob = null
         }

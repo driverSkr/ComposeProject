@@ -75,11 +75,6 @@ class AudioRecorderController {
     private var recordJob: Job? = null
     private var playJob: Job? = null
 
-    // 编码参数
-    private val sampleRate = 44100
-    private val channelConfig = AudioFormat.CHANNEL_IN_MONO
-    private val audioFormat = AudioFormat.ENCODING_PCM_16BIT
-
     /** 开始\恢复录音 */
     fun startRecording(context: Context, outputDir: File) {
         if (recordState == RecordState.RECORDING) return
@@ -307,7 +302,7 @@ class AudioRecorderController {
         val codec = MediaCodec.createEncoderByType(MediaFormat.MIMETYPE_AUDIO_AAC).apply {
             val format = MediaFormat.createAudioFormat(
                 MediaFormat.MIMETYPE_AUDIO_AAC,
-                sampleRate,
+                SAMPLE_RATE,
                 1
             ).apply {
                 setInteger(MediaFormat.KEY_BIT_RATE, 128000)
@@ -339,7 +334,7 @@ class AudioRecorderController {
                                 inputBufferIndex,
                                 0,
                                 buffer.limit(),
-                                totalBytesRead * 1000000L / (2 * sampleRate), // 计算时间戳
+                                totalBytesRead * 1000000L / (2 * SAMPLE_RATE), // 计算时间戳
                                 0
                             )
                             totalBytesRead += buffer.limit()
