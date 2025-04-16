@@ -51,6 +51,7 @@ open class BaseActivity : AppCompatActivity(), ProgressSupport {
         window.statusBarColor = Color.TRANSPARENT
     }
 
+    //设置状态栏文字颜色
     fun setStatusTextDark(dark: Boolean) {
         val controller = ViewCompat.getWindowInsetsController(window.decorView)
         controller?.isAppearanceLightStatusBars = dark

@@ -1,7 +1,6 @@
 package com.ethan.compose.ui.media.page
 
 import androidx.compose.animation.AnimatedContent
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Button
@@ -14,7 +13,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.ethan.compose.custom.view.StatusBarsView
-import com.ethan.compose.theme.Black
 import com.ethan.compose.ui.media.view.AudioRecordAudioTrackView
 import com.ethan.compose.ui.media.view.MediaRecorderExoPlayerView
 import com.ethan.compose.ui.media.view.RecordView
@@ -25,10 +23,8 @@ fun AudioRecordPage() {
 
     var selectPage by remember { mutableStateOf(AudioRecordPageEnum.MediaRecorderMediaPlayer) }
 
-    Column(modifier = Modifier
-        .fillMaxSize()
-        .background(color = Black)) {
-        StatusBarsView("录音", true)
+    Column(modifier = Modifier.fillMaxSize()) {
+        StatusBarsView("录音")
 
         Button(onClick = { selectPage = AudioRecordPageEnum.MediaRecorderMediaPlayer }) {
             Text(text = "MediaRecorder 录音 + MediaPlayer  播放")

@@ -1,14 +1,14 @@
 package com.ethan.compose.custom.view
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
-import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -21,27 +21,25 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ethan.compose.R
 import com.ethan.compose.extension.findBaseActivityVBind
-import com.ethan.compose.theme.Purple40
-import com.ethan.compose.theme.White
+import com.ethan.compose.theme.Black
 
 @Composable
-fun StatusBarsView(title: String, canBack: Boolean = true) {
+fun StatusBarsView(title: String, canBack: Boolean = true, modifier: Modifier = Modifier) {
     val context = LocalContext.current
 
-    Box(modifier = Modifier
-        .background(color = Purple40)
+    Row(modifier = modifier
         .statusBarsPadding()
         .fillMaxWidth()
         .height(50.dp)
-        .wrapContentHeight()
-        .padding(horizontal = 24.dp)
+        .padding(start = 18.dp),
+        verticalAlignment = Alignment.CenterVertically
     ) {
         if (canBack) {
-            Image(painter = painterResource(R.drawable.svg_back), contentDescription = null, modifier = Modifier
-                .align(Alignment.CenterStart)
+            Image(painter = painterResource(R.drawable.svg_back_black), contentDescription = null, modifier = Modifier
                 .clickable { context.findBaseActivityVBind()?.finish() })
+            Spacer(modifier = Modifier.width(8.dp))
         }
-        Text(text = title, color = White, fontSize = 16.sp, fontWeight = FontWeight.Bold, modifier = Modifier.align(Alignment.Center))
+        Text(text = title, color = Black, fontSize = 20.sp, fontWeight = FontWeight.Bold)
     }
 }
 

@@ -27,6 +27,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.ethan.compose.custom.view.StatusBarsView
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
 
@@ -57,6 +58,7 @@ fun TabWithSubViews() {
     }
 
     Column {
+        StatusBarsView(title = "Test")
         // ScrollableTabRow 显示标签页标题，并去掉底部指示器和分隔线
         ScrollableTabRow(
             selectedTabIndex = selectedTabIndex,
