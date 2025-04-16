@@ -2,11 +2,6 @@ package com.ethan.compose.ui.media.view
 
 import android.util.Log
 import androidx.compose.animation.AnimatedContent
-import androidx.compose.animation.core.Animatable
-import androidx.compose.animation.core.FastOutSlowInEasing
-import androidx.compose.animation.core.LinearEasing
-import androidx.compose.animation.core.infiniteRepeatable
-import androidx.compose.animation.core.keyframes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -18,7 +13,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -33,7 +27,6 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -45,7 +38,6 @@ import com.blankj.utilcode.util.PermissionUtils
 import com.ethan.compose.R
 import com.ethan.compose.theme.Grey20
 import com.ethan.compose.theme.NO_PADDING_TEXT_STYLE
-import com.ethan.compose.theme.RedFF0048
 import com.ethan.compose.theme.White
 import com.ethan.compose.theme.White10
 import com.ethan.compose.theme.White60
@@ -195,42 +187,7 @@ fun RecordView(modifier: Modifier = Modifier) {
     }
 }
 
-//红点呼吸灯
-@Composable
-fun BreathingLight() {
 
-    val animation = remember { Animatable(0.8f) }
-    val scope = rememberCoroutineScope()
-
-    LaunchedEffect(Unit) {
-        scope.launch {
-            animation.animateTo(
-                targetValue = 1.2f,
-                animationSpec = infiniteRepeatable(
-                    animation = keyframes {
-                        durationMillis = 1200
-                        0.8f at 0 using LinearEasing
-                        1.2f at 600 using FastOutSlowInEasing
-                        0.8f at 1200 using LinearEasing
-                    }
-                )
-            )
-        }
-    }
-
-    Box(modifier = Modifier
-        .size(6.dp)
-        .graphicsLayer {
-            scaleX = animation.value
-            scaleY = animation.value
-            alpha = 0.5f + (animation.value - 0.8f) * 1.25f // 同步计算透明度
-        }
-        .background(
-            color = RedFF0048,
-            shape = RoundedCornerShape(999.dp)
-        )
-    )
-}
 
 enum class RecordState {
     NotStarted,
