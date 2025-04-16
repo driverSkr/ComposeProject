@@ -1,8 +1,6 @@
 package com.ethan.compose.utils
 
-import android.Manifest
 import android.content.Context
-import android.content.pm.PackageManager
 import android.media.AudioAttributes
 import android.media.AudioFormat
 import android.media.AudioManager
@@ -14,7 +12,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import androidx.core.app.ActivityCompat
 import com.ethan.videoediting.AudioCutting
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -27,6 +24,8 @@ import kotlinx.coroutines.withContext
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 import kotlin.math.min
 
 class AudioRecordHelper {
@@ -47,20 +46,17 @@ class AudioRecordHelper {
     private var audioTrack: AudioTrack? = null
     private var outputStream: FileOutputStream? = null
 
-    // PCM 缓存
-    private var currentPcmFile: File? = null
-    // 存储所有录制的 PCM 分段文件
-    private val recordedPcmSegments = mutableListOf<File>()
-    // 存储合并后的 PCM 文件（每次暂停后生成）
-    private var mergedPcmFile: File? = null
+    private var currentPcmFile: File? = null // PCM 缓存
+    private val recordedPcmSegments = mutableListOf<File>() // 存储所有录制的 PCM 分段文件
+    private var mergedPcmFile: File? = null // 存储合并后的 PCM 文件（每次暂停后生成）
 
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
     private var recordJob: Job? = null
     private var playJob: Job? = null
 
-
     // 音频参数配置
     companion object {
+        private const val MAX_DURATION = 3 * 60 * 1000L  // 最常录制3分钟
         private const val SAMPLE_RATE = 44100
         private const val CHANNEL_CONFIG = AudioFormat.CHANNEL_IN_MONO
         private const val AUDIO_FORMAT = AudioFormat.ENCODING_PCM_16BIT
@@ -68,60 +64,78 @@ class AudioRecordHelper {
     }
 
     /** 开始\恢复录音 */
-    fun startRecording(context: Context, outputDir: File) {
+    fun startRecording(context: Context, outputDir: File, maxDuration: Long = MAX_DURATION) {
         if (recordState == RecordState.RECORDING) return
+        if (currentDurationMs >= maxDuration) return
 
-        // 检查录音权限
-        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
-            Log.w("AudioRecorder", "Missing RECORD_AUDIO permission")
-            return
-        }
-
-        try {
-            // 创建新的 PCM 分段文件
-            currentPcmFile = File(outputDir, "segment_${System.currentTimeMillis()}.pcm").apply {
-                createNewFile()
-            }
-            // 如果是首次开始（不是恢复），清空记录
-            if (recordState == RecordState.IDLE) {
-                recordedPcmSegments.clear()
-                mergedPcmFile = null
-                currentDurationMs = 0L
-            }
-
-            // 配置 AudioRecord
-            val bufferSize = AudioRecord.getMinBufferSize(SAMPLE_RATE, CHANNEL_CONFIG, AUDIO_FORMAT)
-                .coerceAtLeast(1024) * BUFFER_SIZE_FACTOR
-
-            audioRecord = AudioRecord(
-                MediaRecorder.AudioSource.MIC,
-                SAMPLE_RATE,
-                CHANNEL_CONFIG,
-                AUDIO_FORMAT,
-                bufferSize
-            ).apply { startRecording() }
-
-            // 启动录音协程
-            recordJob = scope.launch {
-                val buffer = ByteArray(bufferSize)
-                outputStream = FileOutputStream(currentPcmFile).also { stream ->
-                    while (isActive && recordState == RecordState.RECORDING) {
-                        val bytesRead = audioRecord!!.read(buffer, 0, bufferSize)
-                        if (bytesRead > 0) {
-                            withContext(Dispatchers.IO) {
-                                stream.write(buffer, 0, bytesRead)
-                            }
-                            updateDuration(bytesRead)
-                        }
-                    }
-                    stream.flush()
+        scope.launch {
+            try {
+                // 检查录音权限（在协程中调用挂起函数）
+                val granted = withContext(Dispatchers.IO) {
+                    MyPermissionUtils.checkRecordPermission(false, jump2Setting = false)
                 }
-            }
 
-            recordState = RecordState.RECORDING
-        } catch (e: Exception) {
-            Log.e("AudioRecorder", "Start recording failed", e)
-            cleanupRecordingResources()
+                if (!granted) {
+                    Log.w("AudioRecorder", "Recording permission denied")
+                    return@launch
+                }
+
+                val fileName = "segment_${System.currentTimeMillis()}.pcm"
+                val audioDir = File(outputDir, "cache_audio").apply { mkdirs() }
+                // 创建新的 PCM 分段文件
+                currentPcmFile = File(audioDir, fileName).apply {
+                    createNewFile()
+                }
+
+                // 如果是首次开始（不是恢复），清空记录
+                if (recordState == RecordState.IDLE) {
+                    recordedPcmSegments.clear()
+                    mergedPcmFile?.delete()
+                    mergedPcmFile = null
+                    currentDurationMs = 0L
+                }
+
+                // 配置 AudioRecord
+                val bufferSize = AudioRecord.getMinBufferSize(SAMPLE_RATE, CHANNEL_CONFIG, AUDIO_FORMAT)
+                    .coerceAtLeast(1024) * BUFFER_SIZE_FACTOR
+
+                audioRecord = AudioRecord(
+                    MediaRecorder.AudioSource.MIC,
+                    SAMPLE_RATE,
+                    CHANNEL_CONFIG,
+                    AUDIO_FORMAT,
+                    bufferSize
+                ).apply { startRecording() }
+
+                // 录音协程
+                recordJob = launch { // 使用当前scope的子协程
+                    val buffer = ByteArray(bufferSize)
+                    outputStream = FileOutputStream(currentPcmFile).also { stream ->
+                        while (isActive && recordState == RecordState.RECORDING) {
+                            val bytesRead = audioRecord!!.read(buffer, 0, bufferSize)
+                            if (bytesRead > 0) {
+                                withContext(Dispatchers.IO) {
+                                    stream.write(buffer, 0, bytesRead)
+                                }
+                                updateDuration(bytesRead)
+
+                                if (currentDurationMs >= maxDuration) {
+                                    withContext(Dispatchers.Main) {
+                                        context.externalCacheDir?.let { dir -> pauseRecording(dir) }
+                                    }
+                                    break
+                                }
+                            }
+                        }
+                        stream.flush()
+                    }
+                }
+
+                recordState = RecordState.RECORDING
+            } catch (e: Exception) {
+                Log.e("AudioRecorder", "Start recording failed", e)
+                cleanupRecordingResources()
+            }
         }
     }
 
@@ -143,7 +157,10 @@ class AudioRecordHelper {
         // 合并所有 PCM 分段
         scope.launch {
             try {
-                mergedPcmFile = mergePcmSegments(outputDir)
+                val pcmFile = mergedPcmFile
+                mergedPcmFile = mergePcmSegments(outputDir).apply {
+                    this?.let { pcmFile?.delete() }
+                }
                 Log.d("AudioRecorder", "PCM segments merged to: ${mergedPcmFile?.path}")
             } catch (e: Exception) {
                 Log.e("AudioRecorder", "Merge PCM segments failed", e)
@@ -152,8 +169,11 @@ class AudioRecordHelper {
     }
 
     /** 停止录音并编码为 M4A */
-    fun stopRecording(outputFile: File, callback: (Boolean) -> Unit) {
-        if (recordState == RecordState.IDLE) return
+    suspend fun stopRecording(outputFile: File, callback: (Boolean) -> Unit) = suspendCoroutine { suspendCoroutine ->
+        if (recordState == RecordState.IDLE) {
+            suspendCoroutine.resume(false)
+            return@suspendCoroutine
+        }
 
         // 如果是正在录制中停止，先添加当前分段
         if (recordState == RecordState.RECORDING) {
@@ -172,16 +192,18 @@ class AudioRecordHelper {
                     val finalPcmFile = mergePcmSegments(outputFile.parentFile!!)
 
                     // 将 PCM 编码为 M4A
-                    val result = AudioCutting.encodePcmToM4a(finalPcmFile, outputFile)
+                    AudioCutting.encodePcmToM4a(finalPcmFile, outputFile)
                     // 清理临时文件
                     recordedPcmSegments.forEach { it.delete() }
                     finalPcmFile?.delete()
                     mergedPcmFile?.delete()
                 }
                 callback(true)
+                suspendCoroutine.resume(true)
             } catch (e: Exception) {
                 Log.e("AudioRecorder", "Encoding failed", e)
                 callback(false)
+                suspendCoroutine.resume(false)
             }
         }
     }
@@ -198,7 +220,6 @@ class AudioRecordHelper {
         if (playState != PlayState.PLAYING) return
 
         playState = PlayState.PAUSED
-        Log.d("ethan","pausePlaying 播放状态：${playState.name}")
         audioTrack?.pause()
         playJob?.cancel() // 停止数据读取协程
     }
@@ -225,9 +246,18 @@ class AudioRecordHelper {
 
     /** 释放所有资源 */
     fun release() {
-        scope.cancel()
-        stopRecording(File("")) { _ -> } // 清理临时文件
-        stopPlaying()
+        scope.launch {
+            try {
+                // 使用空文件路径调用 stopRecording（仅用于清理）
+                stopRecording(File("")) { _ -> }
+            } catch (e: Exception) {
+                Log.e("AudioRecorder", "Release failed during stopRecording", e)
+            } finally {
+                // 确保无论如何都会停止播放和释放资源
+                stopPlaying()
+                scope.cancel() // 取消所有协程
+            }
+        }
     }
 
     fun deleteFile() {
@@ -236,6 +266,9 @@ class AudioRecordHelper {
         recordedPcmSegments.forEach { it.delete() }
         currentDurationMs = 0L
         currentPlayPositionMs = 0L
+
+        recordState = RecordState.IDLE
+        playState = PlayState.IDLE
     }
 
     /** 从指定位置开始播放 */
@@ -294,7 +327,10 @@ class AudioRecordHelper {
     private suspend fun mergePcmSegments(outputDir: File): File? {
         return withContext(Dispatchers.IO) {
             try {
-                val mergedFile = File(outputDir, "merged_${System.currentTimeMillis()}.pcm").apply {
+                val fileName = "merged_${System.currentTimeMillis()}.pcm"
+                val audioDir = File(outputDir, "cache_audio").apply { mkdirs() }
+                // 创建新的 PCM 分段文件
+                val mergedFile = File(audioDir, fileName).apply {
                     createNewFile()
                 }
 
@@ -315,6 +351,8 @@ class AudioRecordHelper {
 
     private fun updateDuration(bytesRead: Int) {
         currentDurationMs += bytesRead * 1000L / (2 * SAMPLE_RATE)
+        // 确保不超过3分钟
+        currentDurationMs = min(MAX_DURATION, currentDurationMs)
     }
 
     /** 更新播放位置（需要重置计算方式） */

@@ -1,6 +1,5 @@
 package com.ethan.compose.utils
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.media.MediaRecorder
 import android.net.Uri
@@ -48,10 +47,10 @@ class AudioRecorder(private val context: Context) {
 
     // 格式化时间显示
     val formattedCurrentTime: String
-        get() = formatTime(currentTime)
+        get() = currentTime.formatMSCTime()
 
     val formattedTotalTime: String
-        get() = formatTime(totalDuration)
+        get() = totalDuration.formatMSCTime()
 
     fun startRecording(filePath: String) {
         try {
@@ -204,13 +203,5 @@ class AudioRecorder(private val context: Context) {
         } else {
             false
         }
-    }
-
-    // 时间格式化工具
-    @SuppressLint("DefaultLocale")
-    private fun formatTime(milliseconds: Long): String {
-        val seconds = (milliseconds / 1000) % 60
-        val minutes = (milliseconds / (1000 * 60)) % 60
-        return String.format("%02d:%02d", minutes, seconds)
     }
 }
