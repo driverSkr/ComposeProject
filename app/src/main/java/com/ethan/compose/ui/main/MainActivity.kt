@@ -19,6 +19,7 @@ import com.skydoves.bundler.intentOf
 //todo 4.视频播放的多种方式（MediaPlayer、ExoPlayer）
 //todo 5.音视频裁剪（ffmpeg）
 //todo 6.项目结构调整（可以按“设置”app设计）
+//todo 7.分页（Flow、自定义）
 class MainActivity : BaseActivityVBind<LayoutComposeContainerBinding>() {
 
     companion object {

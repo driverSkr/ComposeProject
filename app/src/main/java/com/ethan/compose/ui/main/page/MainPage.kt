@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.HorizontalDivider
@@ -32,7 +31,6 @@ import com.ethan.compose.theme.Black
 import com.ethan.compose.theme.Black10
 import com.ethan.compose.theme.NO_PADDING_TEXT_STYLE
 import com.ethan.compose.theme.White
-import com.ethan.compose.theme.White10
 import com.ethan.compose.ui.component.ComponentActivity
 import com.ethan.compose.ui.custom.CustomActivity
 import com.ethan.compose.ui.dialog.DialogActivity
