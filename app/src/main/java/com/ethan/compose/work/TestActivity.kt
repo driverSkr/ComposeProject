@@ -10,6 +10,7 @@ import com.ethan.compose.base.BaseActivityVBind
 import com.ethan.compose.databinding.LayoutComposeContainerBinding
 import com.ethan.compose.theme.ComposeProjectTheme
 import com.ethan.compose.theme.Transparent
+import com.ethan.compose.work.test.TestView
 import com.skydoves.bundler.intentOf
 
 class TestActivity : BaseActivityVBind<LayoutComposeContainerBinding>() {
@@ -29,7 +30,7 @@ class TestActivity : BaseActivityVBind<LayoutComposeContainerBinding>() {
                 CompositionLocalProvider {
                     ComposeProjectTheme {
                         Surface(modifier = Modifier.fillMaxSize(), color = Transparent) {
-                            TabWithSubViews()
+                            TestView()
                         }
                     }
                 }
