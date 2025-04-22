@@ -1,4 +1,4 @@
-import com.ethan.compose.bean.Message
+import com.ethan.compose.model.Message
 
 /**
  * SampleData for Jetpack Compose Tutorial 

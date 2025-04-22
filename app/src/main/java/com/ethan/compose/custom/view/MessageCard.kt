@@ -28,7 +28,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.ethan.compose.R
-import com.ethan.compose.bean.Message
+import com.ethan.compose.model.Message
 
 @Composable
 fun Conversation(messages: List<Message>) {

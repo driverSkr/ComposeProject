@@ -14,6 +14,7 @@ import com.ethan.compose.ui.component.ComponentActivity
 import com.ethan.compose.ui.custom.CustomActivity
 import com.ethan.compose.ui.dialog.DialogActivity
 import com.ethan.compose.ui.media.AudioRecordActivity
+import com.ethan.compose.ui.room.RoomActivity
 import com.ethan.compose.ui.swipe.SwipeActivity
 import com.ethan.compose.work.TestActivity
 
@@ -27,6 +28,7 @@ fun MainPage() {
         Triple("自定义组件", true) { CustomActivity.launch(context) },
         Triple("多媒体组件", true) { AudioRecordActivity.launch(context) },
         Triple("侧滑组件", true) { SwipeActivity.launch(context) },
+        Triple("Room数据库", true) { RoomActivity.launch(context) },
         Triple("Test", true) { context.startActivity(Intent(context, TestActivity::class.java)) },
     )
 
