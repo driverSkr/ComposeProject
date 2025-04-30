@@ -10,14 +10,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.ethan.compose.custom.view.ListCardView
 import com.ethan.compose.custom.view.StatusBarsView
-import com.ethan.compose.work.TabWithSubViews
 
 @Composable
 @Preview
 fun TestView() {
     val showView = remember { mutableIntStateOf(0) }
     val items = listOf(
-        Triple("TabWithSubViews", false) { showView.intValue = 0 },
         Triple("侧滑删除组件", false) { showView.intValue = 1 },
     )
 
@@ -27,9 +25,7 @@ fun TestView() {
 
         AnimatedContent(showView.intValue, label = "") {
             when(it) {
-                0 -> TabWithSubViews()
                 1 -> SwipeToDismissView()
-                else -> TabWithSubViews()
             }
         }
     }

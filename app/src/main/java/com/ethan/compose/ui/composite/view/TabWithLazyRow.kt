@@ -1,4 +1,4 @@
-package com.ethan.compose.work
+package com.ethan.compose.ui.composite.view
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -28,12 +28,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ethan.compose.custom.view.StatusBarsView
+import com.ethan.compose.work.TextItem
+import com.ethan.compose.work.tabDataSource
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
 
 @Composable
 @Preview
-fun TabWithSubViews() {
+fun TabWithLazyRow() {
     // 状态变量用于跟踪当前选中的标签页索引
     var selectedTabIndex by remember { mutableIntStateOf(0) }
     val allTextItems = tabDataSource.flatMap { it.textItems }
