@@ -126,7 +126,42 @@ val removeDataSource = RemoveItemData(
                     title = "Life Style 1",
                     isFree = 2,
                     previewUrl = "https://material.hitpaw.com/static/7c606ea54bce9e7204941b15787a4998/upload/f7a62b2b2918bc289ee8954c6ca3549c12.png"
-                )
+                ),
+                RemoveDetail(
+                    title = "Life Style 2",
+                    isFree = 2,
+                    previewUrl = "https://material.hitpaw.com/static/7c606ea54bce9e7204941b15787a4998/upload/f7a62b2b2918bc289ee8954c6ca3549c12.png"
+                ),
+                RemoveDetail(
+                    title = "Life Style 3",
+                    isFree = 2,
+                    previewUrl = "https://material.hitpaw.com/static/7c606ea54bce9e7204941b15787a4998/upload/f7a62b2b2918bc289ee8954c6ca3549c12.png"
+                ),
+                RemoveDetail(
+                    title = "Life Style 4",
+                    isFree = 2,
+                    previewUrl = "https://material.hitpaw.com/static/7c606ea54bce9e7204941b15787a4998/upload/f7a62b2b2918bc289ee8954c6ca3549c12.png"
+                ),
+                RemoveDetail(
+                    title = "Life Style 5",
+                    isFree = 2,
+                    previewUrl = "https://material.hitpaw.com/static/7c606ea54bce9e7204941b15787a4998/upload/f7a62b2b2918bc289ee8954c6ca3549c12.png"
+                ),
+                RemoveDetail(
+                    title = "Life Style 6",
+                    isFree = 2,
+                    previewUrl = "https://material.hitpaw.com/static/7c606ea54bce9e7204941b15787a4998/upload/f7a62b2b2918bc289ee8954c6ca3549c12.png"
+                ),
+                RemoveDetail(
+                    title = "Life Style 7",
+                    isFree = 2,
+                    previewUrl = "https://material.hitpaw.com/static/7c606ea54bce9e7204941b15787a4998/upload/f7a62b2b2918bc289ee8954c6ca3549c12.png"
+                ),
+                RemoveDetail(
+                    title = "Life Style 8",
+                    isFree = 2,
+                    previewUrl = "https://material.hitpaw.com/static/7c606ea54bce9e7204941b15787a4998/upload/f7a62b2b2918bc289ee8954c6ca3549c12.png"
+                ),
             )
         ),
 
@@ -137,7 +172,47 @@ val removeDataSource = RemoveItemData(
                     title = "Festival1",
                     isFree = 2,
                     previewUrl = "https://material.hitpaw.com/static/90687c340367c36e2d81871be53f67dc/upload/f97d3e341a1ed168502c4fa0c3ad83ec11.png"
-                )
+                ),
+                RemoveDetail(
+                    title = "Festival2",
+                    isFree = 2,
+                    previewUrl = "https://material.hitpaw.com/static/90687c340367c36e2d81871be53f67dc/upload/f97d3e341a1ed168502c4fa0c3ad83ec11.png"
+                ),
+                RemoveDetail(
+                    title = "Festival3",
+                    isFree = 2,
+                    previewUrl = "https://material.hitpaw.com/static/90687c340367c36e2d81871be53f67dc/upload/f97d3e341a1ed168502c4fa0c3ad83ec11.png"
+                ),
+                RemoveDetail(
+                    title = "Festival4",
+                    isFree = 2,
+                    previewUrl = "https://material.hitpaw.com/static/90687c340367c36e2d81871be53f67dc/upload/f97d3e341a1ed168502c4fa0c3ad83ec11.png"
+                ),
+                RemoveDetail(
+                    title = "Festival5",
+                    isFree = 2,
+                    previewUrl = "https://material.hitpaw.com/static/90687c340367c36e2d81871be53f67dc/upload/f97d3e341a1ed168502c4fa0c3ad83ec11.png"
+                ),
+                RemoveDetail(
+                    title = "Festival6",
+                    isFree = 2,
+                    previewUrl = "https://material.hitpaw.com/static/90687c340367c36e2d81871be53f67dc/upload/f97d3e341a1ed168502c4fa0c3ad83ec11.png"
+                ),
+                RemoveDetail(
+                    title = "Festival7",
+                    isFree = 2,
+                    previewUrl = "https://material.hitpaw.com/static/90687c340367c36e2d81871be53f67dc/upload/f97d3e341a1ed168502c4fa0c3ad83ec11.png"
+                ),
+                RemoveDetail(
+                    title = "Festival8",
+                    isFree = 2,
+                    previewUrl = "https://material.hitpaw.com/static/90687c340367c36e2d81871be53f67dc/upload/f97d3e341a1ed168502c4fa0c3ad83ec11.png"
+                ),
+                RemoveDetail(
+                    title = "Festival9",
+                    isFree = 2,
+                    previewUrl = "https://material.hitpaw.com/static/90687c340367c36e2d81871be53f67dc/upload/f97d3e341a1ed168502c4fa0c3ad83ec11.png"
+                ),
             )
         ),
 
@@ -148,7 +223,42 @@ val removeDataSource = RemoveItemData(
                     title = "Season1",
                     isFree = 2,
                     previewUrl = "https://material.hitpaw.com/static/db20770a8b02dd110bcd9460a4a316d3/upload/abbee7ce901b1a0987f9a5b69483d9d711.png"
-                )
+                ),
+                RemoveDetail(
+                    title = "Season2",
+                    isFree = 2,
+                    previewUrl = "https://material.hitpaw.com/static/db20770a8b02dd110bcd9460a4a316d3/upload/abbee7ce901b1a0987f9a5b69483d9d711.png"
+                ),
+                RemoveDetail(
+                    title = "Season3",
+                    isFree = 2,
+                    previewUrl = "https://material.hitpaw.com/static/db20770a8b02dd110bcd9460a4a316d3/upload/abbee7ce901b1a0987f9a5b69483d9d711.png"
+                ),
+                RemoveDetail(
+                    title = "Season4",
+                    isFree = 2,
+                    previewUrl = "https://material.hitpaw.com/static/db20770a8b02dd110bcd9460a4a316d3/upload/abbee7ce901b1a0987f9a5b69483d9d711.png"
+                ),
+                RemoveDetail(
+                    title = "Season5",
+                    isFree = 2,
+                    previewUrl = "https://material.hitpaw.com/static/db20770a8b02dd110bcd9460a4a316d3/upload/abbee7ce901b1a0987f9a5b69483d9d711.png"
+                ),
+                RemoveDetail(
+                    title = "Season6",
+                    isFree = 2,
+                    previewUrl = "https://material.hitpaw.com/static/db20770a8b02dd110bcd9460a4a316d3/upload/abbee7ce901b1a0987f9a5b69483d9d711.png"
+                ),
+                RemoveDetail(
+                    title = "Season7",
+                    isFree = 2,
+                    previewUrl = "https://material.hitpaw.com/static/db20770a8b02dd110bcd9460a4a316d3/upload/abbee7ce901b1a0987f9a5b69483d9d711.png"
+                ),
+                RemoveDetail(
+                    title = "Season8",
+                    isFree = 2,
+                    previewUrl = "https://material.hitpaw.com/static/db20770a8b02dd110bcd9460a4a316d3/upload/abbee7ce901b1a0987f9a5b69483d9d711.png"
+                ),
             )
         ),
     )

@@ -26,7 +26,7 @@ import coil.compose.AsyncImage
 import com.ethan.compose.R
 import com.ethan.compose.theme.Purple1F1B26
 import com.ethan.compose.theme.White
-import com.ethan.compose.ui.composite.model.RemoveItemData
+import com.ethan.compose.ui.composite.model.RemoveDetail
 import com.ethan.compose.utils.antiShakeClick
 import com.ethan.compose.utils.setAlpha
 
@@ -65,7 +65,7 @@ fun VideoSelectView(isSelected: Boolean, modifier: Modifier = Modifier, clickabl
 fun RemoveItem(
     isSelected: Boolean,
     isLoading: MutableState<Boolean>,
-    detail: RemoveItemData,
+    detail: RemoveDetail,
     clickable: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -79,7 +79,7 @@ fun RemoveItem(
                 .border(
                     width = 2.dp,
                     color = White,
-                    shape = if (detail.is_free == 2) RoundedCornerShape(topEnd = 16.dp, topStart = 12.dp, bottomEnd = 12.dp, bottomStart = 12.dp) else RoundedCornerShape(12.dp)
+                    shape = if (detail.isFree == 2) RoundedCornerShape(topEnd = 16.dp, topStart = 12.dp, bottomEnd = 12.dp, bottomStart = 12.dp) else RoundedCornerShape(12.dp)
                 )
                 .padding(4.dp)
                 .clip(RoundedCornerShape(8.dp))
@@ -88,7 +88,7 @@ fun RemoveItem(
         }
         ) {
             AsyncImage(
-                model = detail.preview_url,
+                model = detail.previewUrl,
                 contentDescription = null,
                 modifier = Modifier
                     .fillMaxSize()
@@ -99,7 +99,7 @@ fun RemoveItem(
             )
         }
 
-        if (detail.is_free == 2) {
+        if (detail.isFree == 2) {
             Image(
                 painter = painterResource(R.drawable.svg_icon_pro),
                 contentDescription = "pro",

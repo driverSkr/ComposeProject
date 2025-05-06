@@ -30,7 +30,7 @@ import kotlinx.coroutines.launch
 fun CompositePage() {
     val scope = rememberCoroutineScope()
     val showView = remember { mutableIntStateOf(0) }
-    val dialog = BottomDialog(showView.intValue)
+    val dialog = bottomDialog(showView.intValue)
 
     val items = listOf(
         Triple("ScrollableTabRow和HorizontalPager联动", false) {
@@ -56,7 +56,7 @@ fun CompositePage() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun BottomDialog(showView: Int): SheetState {
+fun bottomDialog(showView: Int): SheetState {
     val scope = rememberCoroutineScope()
     val sheetState = rememberModalBottomSheetState(true, confirmValueChange = { true })
 
