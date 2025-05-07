@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.dp
 import com.ethan.compose.custom.view.ListCardView
 import com.ethan.compose.custom.view.StatusBarsView
 import com.ethan.compose.theme.Black_24252C
-import com.ethan.compose.ui.component.page.ComponentPage
+import com.ethan.compose.ui.composite.view.TabWithHorizontalPager
 import com.ethan.compose.ui.composite.view.TabWithLazyRow
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -58,7 +58,8 @@ fun CompositePage() {
 @Composable
 fun bottomDialog(showView: Int): SheetState {
     val scope = rememberCoroutineScope()
-    val sheetState = rememberModalBottomSheetState(true, confirmValueChange = { true })
+    //skipPartiallyExpanded = false 部分展开
+    val sheetState = rememberModalBottomSheetState(false, confirmValueChange = { true })
 
     if (sheetState.isVisible) {
         ModalBottomSheet(
@@ -74,7 +75,7 @@ fun bottomDialog(showView: Int): SheetState {
             AnimatedContent(showView, label = "") {
                 when (it) {
                     0 -> {
-                        ComponentPage()
+                        TabWithHorizontalPager(sheetState)
                     }
                     1 -> {
                         TabWithLazyRow()
