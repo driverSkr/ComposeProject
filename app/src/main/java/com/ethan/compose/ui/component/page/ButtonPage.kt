@@ -2,7 +2,8 @@ package com.ethan.compose.ui.component.page
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
@@ -20,7 +21,7 @@ import androidx.compose.ui.unit.sp
  * Button 对应View中的 Button
  */
 fun ButtonPage() {
-    Column(modifier = Modifier.fillMaxSize().padding(all = 10.dp)) {
+    Column(modifier = Modifier.fillMaxWidth().fillMaxHeight(0.7f).padding(all = 10.dp)) {
         val context = LocalContext.current
         Button(onClick = {
             Toast.makeText(context, "This is Toast", Toast.LENGTH_SHORT).show()

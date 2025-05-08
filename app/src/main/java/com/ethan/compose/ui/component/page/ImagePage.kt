@@ -4,7 +4,8 @@ import android.graphics.BitmapFactory
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
@@ -49,7 +50,8 @@ fun ImagePage() {
     }
 
     Column(modifier = Modifier
-        .fillMaxSize()
+        .fillMaxWidth()
+        .fillMaxHeight(0.7f)
         .padding(all = 10.dp)
         .navigationBarsPadding()
         .verticalScroll(rememberScrollState())

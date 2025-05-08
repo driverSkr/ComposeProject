@@ -114,7 +114,7 @@ fun rememberLoginDialog(context: Context): SheetState {
         ModalBottomSheet(
             onDismissRequest = { scope.launch(Dispatchers.Default) { sheetState.hide() } },
             sheetState = sheetState,
-            containerColor = MaterialTheme.colorScheme.surface,
+            containerColor = White,
             dragHandle = null,
             contentWindowInsets = { WindowInsets(0,0,0,0) },
             shape = RoundedCornerShape(topStart = 12.dp, topEnd = 12.dp),

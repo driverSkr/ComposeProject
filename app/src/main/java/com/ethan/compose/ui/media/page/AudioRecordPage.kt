@@ -3,8 +3,6 @@ package com.ethan.compose.ui.media.page
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Button
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -12,6 +10,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.ethan.compose.custom.view.ListCardView
 import com.ethan.compose.custom.view.StatusBarsView
 import com.ethan.compose.ui.media.view.AudioRecordAudioTrackView
 import com.ethan.compose.ui.media.view.MediaRecorderExoPlayerView
@@ -22,19 +21,15 @@ import com.ethan.compose.ui.media.view.RecordView
 fun AudioRecordPage() {
 
     var selectPage by remember { mutableStateOf(AudioRecordPageEnum.MediaRecorderMediaPlayer) }
+    val items = listOf(
+        Triple("MediaRecorder 录音 + MediaPlayer  播放", true) { selectPage = AudioRecordPageEnum.MediaRecorderMediaPlayer },
+        Triple("MediaRecorder 录音 + ExoPlayer  播放", true) { selectPage = AudioRecordPageEnum.MediaRecorderExoPlayer },
+        Triple("AudioRecord 录音 + AudioTrack  播放", true) { selectPage = AudioRecordPageEnum.AudioRecordAudioTrack }
+    )
 
     Column(modifier = Modifier.fillMaxSize()) {
         StatusBarsView("录音")
-
-        Button(onClick = { selectPage = AudioRecordPageEnum.MediaRecorderMediaPlayer }) {
-            Text(text = "MediaRecorder 录音 + MediaPlayer  播放")
-        }
-        Button(onClick = { selectPage = AudioRecordPageEnum.MediaRecorderExoPlayer }) {
-            Text(text = "MediaRecorder 录音 + ExoPlayer  播放")
-        }
-        Button(onClick = { selectPage = AudioRecordPageEnum.AudioRecordAudioTrack }) {
-            Text(text = "AudioRecord 录音 + AudioTrack  播放")
-        }
+        ListCardView(items)
 
         AnimatedContent(selectPage, label = "") {
             when(it) {

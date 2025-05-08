@@ -2,7 +2,8 @@ package com.ethan.compose.ui.component.page
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.CircularProgressIndicator
@@ -17,7 +18,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 @Preview
 fun ProgressIndicatorPage() {
-    Column(modifier = Modifier.fillMaxSize().padding(all = 10.dp)) {
+    Column(modifier = Modifier.fillMaxWidth().fillMaxHeight(0.7f).padding(all = 10.dp)) {
         Text(text = "圆形进度条")
         CircularProgressIndicator(
             color = Color.Green,
