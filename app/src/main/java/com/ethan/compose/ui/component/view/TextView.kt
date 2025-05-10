@@ -1,4 +1,4 @@
-package com.ethan.compose.ui.component.page
+package com.ethan.compose.ui.component.view
 
 import android.text.TextPaint
 import android.text.style.ClickableSpan
@@ -16,7 +16,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -28,6 +27,7 @@ import androidx.compose.ui.viewinterop.AndroidView
 import com.ethan.compose.R
 import com.ethan.compose.base.Constants
 import com.ethan.compose.theme.Black
+import com.ethan.compose.theme.Blue
 import com.ethan.compose.theme.Cyan
 import com.ethan.compose.theme.DarkOrange
 import com.ethan.compose.theme.Pink40
@@ -39,7 +39,7 @@ import com.ethan.compose.utils.TextSpanUtils
 /**
  * Text 对应View中的 TextView
  */
-fun TextPage() {
+fun TextView() {
     val brushColor = Brush.horizontalGradient(colorStops = arrayOf(0.5f to DarkOrange, 1f to Cyan))
 
     Column(
@@ -50,8 +50,10 @@ fun TextPage() {
     ) {
         Text(
             text = "一个简单的文本",
-            color = Color.Blue,
-            fontSize = 24.sp
+            color = Blue,
+            fontWeight = FontWeight.W400,
+            fontSize = 24.sp,
+            fontStyle = FontStyle.Normal,
         )
 
         Spacer(modifier = Modifier.height(20.dp))

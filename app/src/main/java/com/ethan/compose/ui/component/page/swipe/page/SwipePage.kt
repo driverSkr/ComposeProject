@@ -1,4 +1,4 @@
-package com.ethan.compose.ui.work.test
+package com.ethan.compose.ui.component.page.swipe.page
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
@@ -14,6 +14,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.Card
@@ -36,28 +38,51 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ethan.compose.theme.Red
 import com.ethan.compose.theme.White
+import com.ethan.compose.ui.component.page.swipe.view.SwipeableView
+import com.ethan.compose.ui.custom.view.StatusBarsView
+import com.ethan.compose.ui.custom.view.TitleCardView
 import com.ethan.compose.utils.ToastType
 import com.ethan.compose.utils.showToast
 import kotlinx.coroutines.delay
 
+/**
+ * 侧滑删除的三种实现方式
+ *
+ * 1.SwipeToDismissBox
+ *
+ * 2.SwipeToDismiss
+ *
+ * 3.swipeable修饰符
+ */
 @Composable
 @Preview
-fun SwipeToDismissView() {
-    Column {
-        Text("SwipeToDismissBox")
-        Text("SwipeToDismiss")
-        Text("swipeable修饰符")
+fun SwipePage() {
+    val isSelected = remember { mutableStateOf(false) }
 
-        Spacer(modifier = Modifier.height(18.dp))
-        Text("SwipeToDismissBox基本使用")
-        SwipeToDeleteList()
+    Column(modifier = Modifier.fillMaxSize()) {
+        StatusBarsView("侧滑组件", true)
 
-        Spacer(modifier = Modifier.height(18.dp))
-        Text("SwipeToDismissBox动画效果")
-        SwipeToDeleteListWithAnimation()
+        Column(modifier = Modifier
+            .fillMaxWidth()
+            .verticalScroll(rememberScrollState())
+        ) {
+            TitleCardView("swipeable修饰符", modifier = Modifier.height(150.dp)) {
+                SwipeableView(isSelected.value) { isSelected.value = !isSelected.value }
+            }
 
-        Spacer(modifier = Modifier.height(18.dp))
-        Text("带撤销功能的滑动删除")
+            Spacer(modifier = Modifier.height(20.dp))
+            TitleCardView("SwipeToDismissBox基本使用", modifier = Modifier.height(200.dp)) {
+                SwipeToDeleteList()
+            }
+
+            Spacer(modifier = Modifier.height(20.dp))
+            TitleCardView("SwipeToDismissBox动画效果", modifier = Modifier.height(200.dp)) {
+                SwipeToDeleteListWithAnimation()
+            }
+
+            Spacer(modifier = Modifier.height(20.dp))
+            TitleCardView("带撤销功能的滑动删除", modifier = Modifier.height(100.dp)) {}
+        }
     }
 }
 

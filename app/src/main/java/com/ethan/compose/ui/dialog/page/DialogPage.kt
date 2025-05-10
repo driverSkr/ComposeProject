@@ -14,12 +14,16 @@ import com.ethan.compose.ui.dialog.view.rememberGiftBagDialog
 import com.ethan.compose.ui.dialog.view.rememberLoadingDialog
 import com.ethan.compose.ui.dialog.view.rememberLoadingWithTitleDialog
 import com.ethan.compose.extension.findBaseActivityVBind
+import com.ethan.compose.ui.custom.model.CardItem
 import com.ethan.compose.utils.DialogHelper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
+/**
+ * 弹窗组件：自己编写或收集的弹窗组件的示例
+ */
 @Composable
 @Preview
 fun DialogPage() {
@@ -27,33 +31,17 @@ fun DialogPage() {
     val context = LocalContext.current
     val activity = context.findBaseActivityVBind()
 
-    val confirmDialog = rememberConfirmDialog(
-        title = "标题",
-        content = "你好，弹窗！",
-        mainTv = "确认",
-        secondaryTv = "取消",
-        mainBtn = { /*TODO*/ },
-        secondaryBtn = {})
-
-    val confirmDialog2 = rememberConfirmDialog(
-        title = "标题",
-        content = "你好，弹窗！",
-        mainTv = "确认",
-        secondaryTv = "取消",
-        mainBtn = { /*TODO*/ },
-        secondaryBtn = {})
-
+    val confirmDialog = rememberConfirmDialog(title = "标题", content = "你好，弹窗！", mainTv = "确认", secondaryTv = "取消", mainBtn = { /*TODO*/ }, secondaryBtn = {})
+    val confirmDialog2 = rememberConfirmDialog(title = "标题", content = "你好，弹窗！", mainTv = "确认", secondaryTv = "取消", mainBtn = { /*TODO*/ }, secondaryBtn = {})
     val dialogWithTitle = rememberLoadingWithTitleDialog("请稍等")
-
     val dialog = rememberLoadingDialog()
-
     val giftDialog = rememberGiftBagDialog(30)
 
     val items = listOf(
-        Triple("确认弹窗", false) { confirmDialog.value = true },
-        Triple("确认弹窗（XML版）", false) { activity?.let { DialogHelper.showUpdateDialog(it) } ?: {} },
-        Triple("确认弹窗2", false) { confirmDialog2.value = true },
-        Triple("加载弹窗", false) {
+        CardItem("确认弹窗", false) { confirmDialog.value = true },
+        CardItem("确认弹窗（XML版）", false) { activity?.let { DialogHelper.showUpdateDialog(it) } },
+        CardItem("确认弹窗2", false) { confirmDialog2.value = true },
+        CardItem("加载弹窗", false) {
             scope.launch(Dispatchers.Default) {
                 withContext(Dispatchers.Main) {
                     dialog.value = true
@@ -64,7 +52,7 @@ fun DialogPage() {
                 }
             }
         },
-        Triple("加载弹窗带标题", false) {
+        CardItem("加载弹窗带标题", false) {
             scope.launch(Dispatchers.Default) {
                 withContext(Dispatchers.Main) {
                     dialogWithTitle.value = true
@@ -75,7 +63,7 @@ fun DialogPage() {
                 }
             }
         },
-        Triple("礼包弹窗", false) { giftDialog.value = true },
+        CardItem("礼包弹窗", false) { giftDialog.value = true },
     )
 
     Column(modifier = Modifier.fillMaxSize()) {

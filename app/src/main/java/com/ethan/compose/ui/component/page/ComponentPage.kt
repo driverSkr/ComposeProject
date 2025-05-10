@@ -16,59 +16,73 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.ethan.compose.theme.White
+import com.ethan.compose.ui.component.page.swipe.SwipeActivity
+import com.ethan.compose.ui.component.view.ButtonView
+import com.ethan.compose.ui.component.view.ImageView
+import com.ethan.compose.ui.component.view.ProgressIndicatorView
+import com.ethan.compose.ui.component.view.TextFieldView
+import com.ethan.compose.ui.component.view.TextView
+import com.ethan.compose.ui.custom.model.CardItem
 import com.ethan.compose.ui.custom.view.ListCardView
 import com.ethan.compose.ui.custom.view.StatusBarsView
-import com.ethan.compose.theme.White
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 /**
- * 基础组件
+ * 基础组件：Android官方提供的组件的使用示例
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 @Preview
 fun ComponentPage() {
     val scope = rememberCoroutineScope()
+    val context = LocalContext.current
     val showView = remember { mutableIntStateOf(0) }
     val dialog = bottomDialog(showView.intValue)
 
     val items = listOf(
-        Triple("Text", true) {
+        CardItem("Text", true) {
             showView.intValue = 0
             scope.launch {
                 dialog.show()
             }
         },
-        Triple("Button", true) {
+        CardItem("Button", true) {
             showView.intValue = 1
             scope.launch {
                 dialog.show()
             }
         },
-        Triple("Image", true) {
+        CardItem("Image", true) {
             showView.intValue = 2
             scope.launch {
                 dialog.show()
             }
         },
-        Triple("ProgressIndicator", true) {
+        CardItem("ProgressIndicator", true) {
             showView.intValue = 3
             scope.launch {
                 dialog.show()
             }
         },
-        Triple("TextField", true) {
+        CardItem("TextField", true) {
             showView.intValue = 4
             scope.launch {
                 dialog.show()
             }
         },
+        CardItem("侧滑删除组件", true, isCompleted = false) {
+            SwipeActivity.launch(context)
+        },
     )
 
-    Column(modifier = Modifier.fillMaxSize().background(color = Color.White)) {
+    Column(modifier = Modifier
+        .fillMaxSize()
+        .background(color = Color.White)) {
         StatusBarsView("基础组件")
         ListCardView(items)
     }
@@ -94,11 +108,11 @@ fun bottomDialog(showView: Int): SheetState {
         ) {
             AnimatedContent(showView, label = "") {
                 when (it) {
-                    0 -> TextPage()
-                    1 -> ButtonPage()
-                    2 -> ImagePage()
-                    3 -> ProgressIndicatorPage()
-                    4 -> TextFieldPage()
+                    0 -> TextView()
+                    1 -> ButtonView()
+                    2 -> ImageView()
+                    3 -> ProgressIndicatorView()
+                    4 -> TextFieldView()
                 }
             }
         }

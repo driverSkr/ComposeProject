@@ -1,10 +1,15 @@
 package com.ethan.compose.ui.custom.view
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -26,11 +31,17 @@ import com.ethan.compose.R
 import com.ethan.compose.theme.Black
 import com.ethan.compose.theme.Black10
 import com.ethan.compose.theme.NO_PADDING_TEXT_STYLE
+import com.ethan.compose.theme.Red
 import com.ethan.compose.theme.White
+import com.ethan.compose.ui.custom.model.CardItem
 import com.ethan.compose.utils.antiShakeClick
+import com.ethan.compose.utils.invisible
 
+/**
+ * 包含列表项的卡片视图
+ */
 @Composable
-fun ListCardView(items: List<Triple<String, Boolean, () -> Any>>) {
+fun ListCardView(items: List<CardItem>) {
     Card(
         shape = RoundedCornerShape(12.dp),
         colors = CardDefaults.cardColors(containerColor = White, contentColor = Black, disabledContainerColor = White, disabledContentColor = Black),
@@ -44,7 +55,7 @@ fun ListCardView(items: List<Triple<String, Boolean, () -> Any>>) {
             .fillMaxWidth()
             .wrapContentHeight()) {
             items(items) {
-                ItemView(it.first, isNotEnd = it != items.last(), isNeedEndIcon = it.second, onClick = it.third)
+                ItemView(it, isNotEnd = it != items.last())
             }
         }
     }
@@ -52,24 +63,31 @@ fun ListCardView(items: List<Triple<String, Boolean, () -> Any>>) {
 
 @Composable
 @Preview
-fun ItemView(name: String = "示例", isNotEnd: Boolean = true, isNeedEndIcon: Boolean = true, onClick: () -> Any = {}, modifier: Modifier = Modifier) {
+fun ItemView(item: CardItem = CardItem("示例", true), isNotEnd: Boolean = true, modifier: Modifier = Modifier) {
     Box(modifier = modifier
         .fillMaxWidth()
         .height(50.dp)
         .padding(horizontal = 12.dp)
         .antiShakeClick {
-            onClick()
+            item.onClick()
         }
     ) {
-        Text(
-            name,
-            color = Black,
-            fontSize = 16.sp,
-            style = NO_PADDING_TEXT_STYLE.copy(fontWeight = FontWeight.W400),
-            modifier = Modifier.align(Alignment.CenterStart)
-        )
+        Row(modifier = Modifier.align(Alignment.CenterStart)) {
+            Text(
+                item.name,
+                color = Black,
+                fontSize = 16.sp,
+                style = NO_PADDING_TEXT_STYLE.copy(fontWeight = FontWeight.W400),
+            )
+            Spacer(modifier = Modifier.width(4.dp))
+            Box(modifier = Modifier
+                .size(8.dp)
+                .invisible(!item.isCompleted)
+                .background(color = Red, shape = RoundedCornerShape(999.dp)))
 
-        if (isNeedEndIcon) {
+        }
+
+        if (item.isNeedEndIcon) {
             Image(
                 painter = painterResource(id = R.drawable.svg_icon_next_black40),
                 contentDescription = null,

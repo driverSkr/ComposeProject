@@ -1,20 +1,16 @@
 package com.ethan.compose.ui.room
 
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
-import com.ethan.compose.R
 import com.ethan.compose.base.BaseActivityVBind
 import com.ethan.compose.databinding.LayoutComposeContainerBinding
 import com.ethan.compose.theme.ComposeProjectTheme
 import com.ethan.compose.theme.Transparent
 import com.ethan.compose.ui.room.page.RoomPage
-import com.ethan.compose.ui.swipe.SwipeActivity
-import com.ethan.compose.ui.swipe.page.SwipePage
 import com.skydoves.bundler.intentOf
 
 class RoomActivity : BaseActivityVBind<LayoutComposeContainerBinding>() {

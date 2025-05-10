@@ -1,4 +1,4 @@
-package com.ethan.compose.ui.component.page
+package com.ethan.compose.ui.component.view
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -52,7 +52,7 @@ import com.ethan.compose.theme.White40
 
 @Composable
 @Preview
-fun TextFieldPage() {
+fun TextFieldView() {
 
     val context = LocalContext.current
     var email by remember { mutableStateOf("") }

@@ -18,7 +18,6 @@ import com.skydoves.bundler.intentOf
 //todo 3.数据库存储的使用（room）
 //todo 4.视频播放的多种方式（MediaPlayer、ExoPlayer）
 //todo 5.音视频裁剪（ffmpeg）
-//todo 6.项目结构调整（可以按“设置”app设计）
 //todo 7.分页（Flow、自定义）
 //todo 8.侧滑删除组件
 //todo 9.权限请求方式

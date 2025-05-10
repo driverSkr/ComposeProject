@@ -10,6 +10,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.ethan.compose.ui.custom.model.CardItem
 import com.ethan.compose.ui.custom.view.ListCardView
 import com.ethan.compose.ui.custom.view.StatusBarsView
 import com.ethan.compose.ui.media.view.AudioRecordAudioTrackView
@@ -22,9 +23,9 @@ fun AudioRecordPage() {
 
     var selectPage by remember { mutableStateOf(AudioRecordPageEnum.MediaRecorderMediaPlayer) }
     val items = listOf(
-        Triple("MediaRecorder 录音 + MediaPlayer  播放", true) { selectPage = AudioRecordPageEnum.MediaRecorderMediaPlayer },
-        Triple("MediaRecorder 录音 + ExoPlayer  播放", true) { selectPage = AudioRecordPageEnum.MediaRecorderExoPlayer },
-        Triple("AudioRecord 录音 + AudioTrack  播放", true) { selectPage = AudioRecordPageEnum.AudioRecordAudioTrack }
+        CardItem("MediaRecorder 录音 + MediaPlayer  播放", true) { selectPage = AudioRecordPageEnum.MediaRecorderMediaPlayer },
+        CardItem("MediaRecorder 录音 + ExoPlayer  播放", true) { selectPage = AudioRecordPageEnum.MediaRecorderExoPlayer },
+        CardItem("AudioRecord 录音 + AudioTrack  播放", true) { selectPage = AudioRecordPageEnum.AudioRecordAudioTrack }
     )
 
     Column(modifier = Modifier.fillMaxSize()) {

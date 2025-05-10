@@ -6,21 +6,25 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
+import com.ethan.compose.ui.custom.model.CardItem
 import com.ethan.compose.ui.custom.view.ListCardView
 import com.ethan.compose.ui.custom.view.StatusBarsView
 import com.ethan.compose.ui.media.AudioRecordActivity
 
+/**
+ * 多媒体组件：音视频播放、录制、裁剪
+ */
 @Composable
 @Preview
 fun MediaPage() {
     val context = LocalContext.current
     val items = listOf(
-        Triple("音频录制、裁剪、播放", true) { AudioRecordActivity.launch(context) },
-        Triple("视频录制、裁剪、播放", true) {  }
+        CardItem("音频录制、裁剪、播放", true, isCompleted = false) { AudioRecordActivity.launch(context) },
+        CardItem("视频录制、裁剪、播放", true, isCompleted = false) {  }
     )
 
     Column(modifier = Modifier.fillMaxSize()) {
-        StatusBarsView("多媒体")
+        StatusBarsView("多媒体组件多媒体组件")
 
         ListCardView(items)
     }

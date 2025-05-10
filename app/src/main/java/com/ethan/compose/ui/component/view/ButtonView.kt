@@ -1,4 +1,4 @@
-package com.ethan.compose.ui.component.page
+package com.ethan.compose.ui.component.view
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.Column
@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.sp
 /**
  * Button 对应View中的 Button
  */
-fun ButtonPage() {
+fun ButtonView() {
     Column(modifier = Modifier.fillMaxWidth().fillMaxHeight(0.7f).padding(all = 10.dp)) {
         val context = LocalContext.current
         Button(onClick = {

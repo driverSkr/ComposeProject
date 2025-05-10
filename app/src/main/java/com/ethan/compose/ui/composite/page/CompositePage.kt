@@ -21,9 +21,13 @@ import com.ethan.compose.ui.custom.view.StatusBarsView
 import com.ethan.compose.theme.Black_24252C
 import com.ethan.compose.ui.composite.view.TabWithHorizontalPager
 import com.ethan.compose.ui.composite.view.TabWithLazyRow
+import com.ethan.compose.ui.custom.model.CardItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+/**
+ * 组合组件：对于多个组件的联合使用的示例
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 @Preview
@@ -33,13 +37,13 @@ fun CompositePage() {
     val dialog = bottomDialog(showView.intValue)
 
     val items = listOf(
-        Triple("ScrollableTabRow和HorizontalPager联动", false) {
+        CardItem("ScrollableTabRow和HorizontalPager联动", false) {
             showView.intValue = 0
             scope.launch {
                 dialog.show()
             }
         },
-        Triple("ScrollableTabRow和LazyRow联动", false) {
+        CardItem("ScrollableTabRow和LazyRow联动", false) {
             showView.intValue = 1
             scope.launch {
                 dialog.show()

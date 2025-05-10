@@ -1,4 +1,4 @@
-package com.ethan.compose.ui.swipe.view
+package com.ethan.compose.ui.component.page.swipe.view
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

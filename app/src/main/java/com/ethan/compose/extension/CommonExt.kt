@@ -25,7 +25,6 @@ import kotlin.math.floor
 import kotlin.math.log10
 import kotlin.math.pow
 
-
 val Any.TAG: String
     get() {
         return if (!javaClass.isAnonymousClass) {

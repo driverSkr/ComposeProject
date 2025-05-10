@@ -1,4 +1,4 @@
-package com.ethan.compose.ui.swipe
+package com.ethan.compose.ui.component.page.swipe
 
 import android.content.Context
 import android.os.Bundle
@@ -10,7 +10,7 @@ import com.ethan.compose.base.BaseActivityVBind
 import com.ethan.compose.databinding.LayoutComposeContainerBinding
 import com.ethan.compose.theme.ComposeProjectTheme
 import com.ethan.compose.theme.Transparent
-import com.ethan.compose.ui.swipe.page.SwipePage
+import com.ethan.compose.ui.component.page.swipe.page.SwipePage
 import com.skydoves.bundler.intentOf
 
 class SwipeActivity : BaseActivityVBind<LayoutComposeContainerBinding>() {

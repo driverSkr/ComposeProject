@@ -8,12 +8,16 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
+import com.ethan.compose.ui.custom.model.CardItem
 import com.ethan.compose.ui.custom.view.ListCardView
 import com.ethan.compose.ui.custom.view.StatusBarsView
 import com.ethan.compose.ui.dialog.view.rememberLoginDialog
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+/**
+ * 自定义组件: 自己编写或收集的完整的UI组件或框架
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 @Preview
@@ -22,11 +26,11 @@ fun CustomPage() {
     val scope = rememberCoroutineScope()
     val dialog = rememberLoginDialog(context)
     val items = listOf(
-        Triple("底部登陆弹窗", false) {
+        CardItem("底部登陆弹窗", false) {
             scope.launch(Dispatchers.Default) {
                 dialog.show()
             }
-        }
+        },
     )
 
     Column(modifier = Modifier.fillMaxSize()) {
