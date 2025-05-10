@@ -1,4 +1,4 @@
-package com.ethan.compose.custom.widget
+package com.ethan.compose.ui.dialog.view
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

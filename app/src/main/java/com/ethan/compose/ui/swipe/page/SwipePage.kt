@@ -10,8 +10,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.ethan.compose.custom.view.ListCardView
-import com.ethan.compose.custom.view.StatusBarsView
+import com.ethan.compose.ui.custom.view.ListCardView
+import com.ethan.compose.ui.custom.view.StatusBarsView
 import com.ethan.compose.ui.swipe.view.SwipeableView
 
 @Composable

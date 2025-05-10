@@ -33,7 +33,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.blankj.utilcode.util.ScreenUtils
 import com.blankj.utilcode.util.SizeUtils
-import com.ethan.compose.custom.view.ScrollableTabRow
+import com.ethan.compose.ui.custom.view.ScrollableTabRow
 import com.ethan.compose.theme.NO_PADDING_TEXT_STYLE
 import com.ethan.compose.theme.Purple291E3D
 import com.ethan.compose.theme.PurpleBC97FF

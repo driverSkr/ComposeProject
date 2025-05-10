@@ -1,4 +1,4 @@
-package com.ethan.compose.custom.view
+package com.ethan.compose.ui.custom.view
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable

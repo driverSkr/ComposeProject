@@ -14,7 +14,7 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.lerp
-import com.ethan.compose.custom.view.TabPosition
+import com.ethan.compose.ui.custom.view.TabPosition
 import com.ethan.compose.theme.White
 import kotlin.math.abs
 

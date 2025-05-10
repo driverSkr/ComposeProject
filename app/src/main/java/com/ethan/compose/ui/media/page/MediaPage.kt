@@ -6,8 +6,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
-import com.ethan.compose.custom.view.ListCardView
-import com.ethan.compose.custom.view.StatusBarsView
+import com.ethan.compose.ui.custom.view.ListCardView
+import com.ethan.compose.ui.custom.view.StatusBarsView
 import com.ethan.compose.ui.media.AudioRecordActivity
 
 @Composable

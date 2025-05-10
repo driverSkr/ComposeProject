@@ -16,8 +16,8 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.ethan.compose.custom.view.ListCardView
-import com.ethan.compose.custom.view.StatusBarsView
+import com.ethan.compose.ui.custom.view.ListCardView
+import com.ethan.compose.ui.custom.view.StatusBarsView
 import com.ethan.compose.theme.Black_24252C
 import com.ethan.compose.ui.composite.view.TabWithHorizontalPager
 import com.ethan.compose.ui.composite.view.TabWithLazyRow

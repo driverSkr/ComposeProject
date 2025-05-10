@@ -10,8 +10,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.ethan.compose.custom.view.ListCardView
-import com.ethan.compose.custom.view.StatusBarsView
+import com.ethan.compose.ui.custom.view.ListCardView
+import com.ethan.compose.ui.custom.view.StatusBarsView
 import com.ethan.compose.ui.media.view.AudioRecordAudioTrackView
 import com.ethan.compose.ui.media.view.MediaRecorderExoPlayerView
 import com.ethan.compose.ui.media.view.RecordView

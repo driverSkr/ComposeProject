@@ -1,4 +1,4 @@
-package com.ethan.compose.ui.main
+package com.ethan.compose.ui.work
 
 import android.content.Context
 import android.os.Bundle
@@ -10,31 +10,19 @@ import com.ethan.compose.base.BaseActivityVBind
 import com.ethan.compose.databinding.LayoutComposeContainerBinding
 import com.ethan.compose.theme.ComposeProjectTheme
 import com.ethan.compose.theme.Transparent
-import com.ethan.compose.ui.main.page.MainPage
+import com.ethan.compose.ui.work.test.TestView
 import com.skydoves.bundler.intentOf
 
-//todo 1.状态同步的几种实现方式（接口回调、livedata、flow、EventBus、BroadcastReceiver、SharedPreferences/DataStore、mutableStateOf）
-//todo 2.音频录制、播放的多种方式
-//todo 3.数据库存储的使用（room）
-//todo 4.视频播放的多种方式（MediaPlayer、ExoPlayer）
-//todo 5.音视频裁剪（ffmpeg）
-//todo 6.项目结构调整（可以按“设置”app设计）
-//todo 7.分页（Flow、自定义）
-//todo 8.侧滑删除组件
-//todo 9.权限请求方式
-//todo 10.主包蒙层
-//todo 11.多语言设置及语言切换
-//todo 12.谷歌登录、支付组件
-//todo 13.支付宝、微信支付组件
-class MainActivity : BaseActivityVBind<LayoutComposeContainerBinding>() {
+class TestActivity : BaseActivityVBind<LayoutComposeContainerBinding>() {
 
     companion object {
         fun launch(context: Context) {
-            context.intentOf<MainActivity> {
+            context.intentOf<TestActivity> {
                 startActivity(context)
             }
         }
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.composeView.apply {
@@ -42,7 +30,7 @@ class MainActivity : BaseActivityVBind<LayoutComposeContainerBinding>() {
                 CompositionLocalProvider {
                     ComposeProjectTheme {
                         Surface(modifier = Modifier.fillMaxSize(), color = Transparent) {
-                            MainPage()
+                            TestView()
                         }
                     }
                 }

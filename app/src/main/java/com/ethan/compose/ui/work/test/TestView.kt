@@ -1,4 +1,4 @@
-package com.ethan.compose.work.test
+package com.ethan.compose.ui.work.test
 
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.foundation.layout.Column
@@ -8,8 +8,8 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.ethan.compose.custom.view.ListCardView
-import com.ethan.compose.custom.view.StatusBarsView
+import com.ethan.compose.ui.custom.view.ListCardView
+import com.ethan.compose.ui.custom.view.StatusBarsView
 
 @Composable
 @Preview

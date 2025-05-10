@@ -8,8 +8,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
-import com.ethan.compose.custom.view.ListCardView
-import com.ethan.compose.custom.view.StatusBarsView
+import com.ethan.compose.ui.custom.view.ListCardView
+import com.ethan.compose.ui.custom.view.StatusBarsView
 import com.ethan.compose.ui.component.ComponentActivity
 import com.ethan.compose.ui.composite.CompositeActivity
 import com.ethan.compose.ui.custom.CustomActivity
@@ -17,7 +17,8 @@ import com.ethan.compose.ui.dialog.DialogActivity
 import com.ethan.compose.ui.media.MediaActivity
 import com.ethan.compose.ui.room.RoomActivity
 import com.ethan.compose.ui.swipe.SwipeActivity
-import com.ethan.compose.work.TestActivity
+import com.ethan.compose.ui.technique.TechniqueActivity
+import com.ethan.compose.ui.work.TestActivity
 
 @Composable
 @Preview
@@ -31,6 +32,7 @@ fun MainPage() {
         Triple("侧滑组件", true) { SwipeActivity.launch(context) },
         Triple("组合组件", true) { CompositeActivity.launch(context) },
         Triple("Room数据库", true) { RoomActivity.launch(context) },
+        Triple("技术、技巧、知识", true) { context.startActivity(Intent(context, TechniqueActivity::class.java)) },
         Triple("Test", true) { context.startActivity(Intent(context, TestActivity::class.java)) },
     )
 

@@ -1,4 +1,4 @@
-package com.ethan.compose.custom.widget
+package com.ethan.compose.ui.media.view
 
 import android.view.LayoutInflater
 import androidx.compose.foundation.layout.Box

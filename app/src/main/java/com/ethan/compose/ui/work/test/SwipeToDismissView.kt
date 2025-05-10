@@ -1,4 +1,4 @@
-package com.ethan.compose.work.test
+package com.ethan.compose.ui.work.test
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween

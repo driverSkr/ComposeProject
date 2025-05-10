@@ -31,8 +31,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.blankj.utilcode.util.PermissionUtils
 import com.ethan.compose.R
-import com.ethan.compose.custom.widget.cloneProgressDialog
-import com.ethan.compose.custom.widget.rememberConfirmDialog
+import com.ethan.compose.ui.dialog.view.cloneProgressDialog
+import com.ethan.compose.ui.dialog.view.rememberConfirmDialog
 import com.ethan.compose.theme.Grey20
 import com.ethan.compose.theme.NO_PADDING_TEXT_STYLE
 import com.ethan.compose.theme.White

@@ -1,4 +1,4 @@
-package com.ethan.compose.custom.view
+package com.ethan.compose.ui.custom.view
 
 import androidx.compose.animation.core.AnimationSpec
 import androidx.compose.animation.core.FastOutSlowInEasing
@@ -36,7 +36,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.fastFold
 import androidx.compose.ui.util.fastForEach
 import androidx.compose.ui.util.fastForEachIndexed
-import com.ethan.compose.custom.view.TabRowDefaults.myTabIndicatorOffset
+import com.ethan.compose.ui.custom.view.TabRowDefaults.myTabIndicatorOffset
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 

@@ -61,7 +61,7 @@ import androidx.media3.datasource.DefaultHttpDataSource
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.exoplayer.source.DefaultMediaSourceFactory
 import com.ethan.compose.R
-import com.ethan.compose.custom.view.ScrollableTabRow
+import com.ethan.compose.ui.custom.view.ScrollableTabRow
 import com.ethan.compose.theme.Black20
 import com.ethan.compose.theme.NO_PADDING_TEXT_STYLE
 import com.ethan.compose.theme.Purple712FE7
