@@ -9,9 +9,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -30,6 +30,7 @@ import coil.decode.GifDecoder
 import coil.request.ImageRequest
 import coil.request.repeatCount
 import com.ethan.compose.R
+import com.ethan.compose.ui.custom.view.TitleCardView
 
 @Composable
 @Preview
@@ -57,34 +58,40 @@ fun ImageView() {
         .verticalScroll(rememberScrollState())
     ) {
 
-        Text(text = "基本使用")
-        Image(painter = painterResource(id = R.mipmap.banner_01), contentDescription = "A woman")
+        TitleCardView("基本使用", modifier = Modifier.height(100.dp)) {
+            Image(painter = painterResource(id = R.mipmap.banner_01), contentDescription = "A woman", modifier = Modifier.size(64.dp))
+        }
 
         Spacer(modifier = Modifier.height(10.dp))
-        Text(text = "Compose中专有的bitmap形式图片")
         val bitmap: ImageBitmap = ImageBitmap.imageResource(id = R.mipmap.banner_01)
-        Image(bitmap = bitmap, contentDescription = "A woman")
+        TitleCardView("Compose中专有的bitmap形式图片", modifier = Modifier.height(100.dp)) {
+            Image(bitmap = bitmap, contentDescription = "A woman", modifier = Modifier.size(64.dp))
+        }
 
         Spacer(modifier = Modifier.height(10.dp))
-        Text(text = "传统的bitmap对象图片")
-        Image(bitmap = bitmap1.asImageBitmap(), contentDescription = "A woman")
+        TitleCardView("传统的bitmap对象图片", modifier = Modifier.height(100.dp)) {
+            Image(bitmap = bitmap1.asImageBitmap(), contentDescription = "A woman", modifier = Modifier.size(64.dp))
+        }
 
         Spacer(modifier = Modifier.height(10.dp))
-        Text(text = "使用网络图片")
-        AsyncImage(model = "https://img-blog.csdnimg.cn/20200401094829557.jpg", contentDescription = "First line of code")
+        TitleCardView("使用网络图片", modifier = Modifier.height(100.dp)) {
+            AsyncImage(model = "https://img-blog.csdnimg.cn/20200401094829557.jpg", contentDescription = null, modifier = Modifier.size(64.dp))
+        }
 
         Spacer(modifier = Modifier.height(10.dp))
-        Text(text = "播放Gif动图")
-        SubcomposeAsyncImage(
-            model = imageRequest,
-            contentDescription = null,
-            contentScale = ContentScale.Crop,
-            loading = {
-                Image(painter = painterResource(R.mipmap.banner_01), contentDescription = null)
-            },
-            success = { success ->
-                SubcomposeAsyncImageContent(painter = success.painter, contentDescription = null)
-            }
-        )
+        TitleCardView("播放Gif动图", modifier = Modifier.height(100.dp)) {
+            SubcomposeAsyncImage(
+                model = imageRequest,
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
+                loading = {
+                    Image(painter = painterResource(R.mipmap.banner_01), contentDescription = null)
+                },
+                success = { success ->
+                    SubcomposeAsyncImageContent(painter = success.painter, contentDescription = null)
+                },
+                modifier = Modifier.size(64.dp)
+            )
+        }
     }
 }

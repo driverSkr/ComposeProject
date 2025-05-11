@@ -1,13 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Compose工程</string>
-
-    <string name="feature_suggestion" translatable="false">功能建议</string>
-    <string name="technical_issues" translatable="false">技术问题</string>
-    <string name="complaint" translatable="false">投诉</string>
-    <string name="purchase_problem" translatable="false">购买问题</string>
-    <string name="refund_consultation" translatable="false">退款咨询</string>
-
-    <string name="avatars_switch_another">Switch to another</string>
+    <string name="avatars_switch_another">换一条</string>
     <string name="avatars_corpus1">清晨的第一缕阳光洒在窗台，唤醒了沉睡的大地。鸟儿在枝头欢快地歌唱，微风轻轻拂过树叶，发出沙沙的声响。远处的山峦被薄雾笼罩，仿佛一幅水墨画。大自然的声音如此美妙，仿佛在诉说着无尽的故事。</string>
     <string name="avatars_corpus2">厨房里弥漫着咖啡的香气，锅铲在锅里翻动着煎蛋，发出滋滋的声音。面包在烤箱里慢慢变金黄，果酱的甜香与咖啡的苦涩交织在一起。窗外的阳光洒在餐桌上，早餐的准备工作井然有序。这是属于我的早晨，充满了温暖和满足。</string>
     <string name="avatars_corpus3">窗外的雨滴敲打着玻璃，发出轻柔的声响。我坐在咖啡馆的角落，手中捧着一杯热咖啡，香气弥漫。周围是低语声和咖啡机的嗡嗡声，偶尔还有收银机的提示音。雨天总是让人想要停下来，享受片刻的宁静与温暖。</string>

@@ -49,7 +49,7 @@ open class BaseActivityVBind<T: ViewBinding>: BaseActivityVB<T>() {
         super.onNewIntent(intent)
     }
 
-    protected fun setLocale(languageCode: String) {
+    fun setLocale(languageCode: String) {
         val resources = resources
         val configuration = resources.configuration
         val displayMetrics = resources.displayMetrics

@@ -29,6 +29,7 @@ import com.ethan.compose.theme.White
 @Preview
 fun TitleCardView(
     title: String = "示例",
+    isShowTitle: Boolean = true,
     modifier: Modifier = Modifier,
     content: @Composable BoxScope.() -> Unit = {},
 ) {
@@ -37,14 +38,16 @@ fun TitleCardView(
         .wrapContentHeight()
         .padding(horizontal = 12.dp)
     ) {
-        Text(
-            text = title,
-            color = Gray,
-            fontWeight = FontWeight.W400,
-            fontSize = 16.sp,
-            fontStyle = FontStyle.Normal,
-            modifier = Modifier.fillMaxWidth().padding(start = 4.dp, bottom = 4.dp)
-        )
+        if (isShowTitle) {
+            Text(
+                text = title,
+                color = Gray,
+                fontWeight = FontWeight.W400,
+                fontSize = 16.sp,
+                fontStyle = FontStyle.Normal,
+                modifier = Modifier.fillMaxWidth().padding(start = 4.dp, bottom = 4.dp)
+            )
+        }
         Card(
             shape = RoundedCornerShape(12.dp),
             colors = CardDefaults.cardColors(containerColor = White, contentColor = Black, disabledContainerColor = White, disabledContentColor = Black),

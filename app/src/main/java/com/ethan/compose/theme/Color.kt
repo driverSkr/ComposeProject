@@ -61,6 +61,7 @@ val White16 = Color(0x29FFFFFF)
 val White10 = Color(0x1AFFFFFF)
 val White8 = Color(0x14FFFFFF)
 val White4 = Color(0x0AFFFFFF)
+val White444447 = Color(0xFF444447)
 
 val Brown = Color(0xFFA52A2A) //棕色
 
