@@ -14,6 +14,8 @@ import com.ethan.compose.ui.technique.model.PageType
 
 /**
  * 工作中学到的技巧、技术、知识合集
+ * Modifier.onGloballyPositioned {  }
+ * Modifier.onPlaced {  }
  */
 @Composable
 @Preview
@@ -22,11 +24,13 @@ fun TechniquePage() {
     val context = LocalContext.current
     val items = listOf(
         CardItem("Pair和Triple的使用", true, isCompleted = false),
+        CardItem("腾讯缓存组件MMKV的使用", true, isCompleted = false),
+        CardItem("腾讯pag动画组件libpag的使用", true, isCompleted = false),
         CardItem("aspectRatio设置宽高比", true, isCompleted = false),
         CardItem("状态同步的几种实现方式", true, isCompleted = false),
         CardItem("分页请求的实现", true, isCompleted = false),
         CardItem("权限请求方式", true, isCompleted = false),
-        CardItem("高斯模糊效果的实现", true, isCompleted = false),
+        CardItem("高斯模糊组件haze的使用", true, isCompleted = false),
         CardItem("多语言设置及语言切换", true, isCompleted = false) { TechniquePreviewActivity.launch(context, PageType.LanguagePage) },
         CardItem("谷歌登录、支付组件", true, isCompleted = false),
         CardItem("支付宝、微信支付组件", true, isCompleted = false),

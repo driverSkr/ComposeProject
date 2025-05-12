@@ -31,6 +31,7 @@ fun CustomPage() {
                 dialog.show()
             }
         },
+        CardItem("图片对比动画组件", false, isCompleted = false) {},
     )
 
     Column(modifier = Modifier.fillMaxSize()) {
