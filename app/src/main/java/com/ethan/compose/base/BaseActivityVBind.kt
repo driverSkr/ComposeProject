@@ -12,6 +12,7 @@ import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.BarUtils
 import com.blankj.utilcode.util.LanguageUtils
 import com.ethan.base.component.BaseActivityVB
+import com.ethan.compose.utils.DataHelper
 import com.ethan.permission.PermissionUtils
 import java.util.Locale
 
@@ -64,6 +65,17 @@ open class BaseActivityVBind<T: ViewBinding>: BaseActivityVB<T>() {
 
     override fun attachBaseContext(newBase: Context?) {
         super.attachBaseContext(newBase)
+        val localLanguage = DataHelper.getLanguage(this)
+        localLanguage?.let {
+            if (localLanguage != com.ethan.compose.utils.LanguageUtils.getLocaleLanguage(this)) {
+                setLocale(localLanguage)
+            }
+            currLanguage = if (it == "tw") {
+                Locale("zh", "TW", "TW")
+            } else {
+                Locale(it)
+            }
+        }
     }
 
     companion object {

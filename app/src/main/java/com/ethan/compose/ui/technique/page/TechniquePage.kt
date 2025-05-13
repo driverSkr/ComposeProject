@@ -31,7 +31,7 @@ fun TechniquePage() {
         CardItem("分页请求的实现", true, isCompleted = false),
         CardItem("权限请求方式", true, isCompleted = false),
         CardItem("高斯模糊组件haze的使用", true, isCompleted = false),
-        CardItem("多语言设置及语言切换", true, isCompleted = false) { TechniquePreviewActivity.launch(context, PageType.LanguagePage) },
+        CardItem("多语言设置及语言切换", true) { TechniquePreviewActivity.launch(context, PageType.LanguagePage) },
         CardItem("谷歌登录、支付组件", true, isCompleted = false),
         CardItem("支付宝、微信支付组件", true, isCompleted = false),
     )
