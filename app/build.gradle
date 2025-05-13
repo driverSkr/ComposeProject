@@ -206,6 +206,9 @@ dependencies {
     implementation project(path: ':Libs:NetWork:CompanyLibs')
     implementation project(path: ':Libs:NetWork:SunnyLibs')
     implementation project(path: ':Components:Sharer:Share')
+    implementation project(path: ':Components:Pay:Alipay')
+    implementation project(path: ':Components:Pay:WeChat')
+    implementation project(path: ':Components:Pay:GPay')
 
     //=========================================library=========================================
     //图片加载库，基于协程开发

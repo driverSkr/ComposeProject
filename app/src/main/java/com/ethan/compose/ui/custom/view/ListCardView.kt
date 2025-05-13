@@ -53,7 +53,7 @@ fun ListCardView(items: List<CardItem>) {
     ) {
         LazyColumn(modifier = Modifier
             .fillMaxWidth()
-            .wrapContentHeight()) {
+            .height((50 * items.size).dp)) {
             items(items) {
                 ItemView(it, isNotEnd = it != items.last())
             }
