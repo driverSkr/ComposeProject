@@ -7,14 +7,15 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.fragment.app.FragmentActivity
+import com.ethan.compose.extension.findBaseActivityVBind
+import com.ethan.compose.ui.custom.model.CardItem
 import com.ethan.compose.ui.custom.view.ListCardView
 import com.ethan.compose.ui.custom.view.StatusBarsView
 import com.ethan.compose.ui.dialog.view.rememberConfirmDialog
 import com.ethan.compose.ui.dialog.view.rememberGiftBagDialog
 import com.ethan.compose.ui.dialog.view.rememberLoadingDialog
 import com.ethan.compose.ui.dialog.view.rememberLoadingWithTitleDialog
-import com.ethan.compose.extension.findBaseActivityVBind
-import com.ethan.compose.ui.custom.model.CardItem
 import com.ethan.compose.utils.DialogHelper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -64,6 +65,10 @@ fun DialogPage() {
             }
         },
         CardItem("礼包弹窗", false) { giftDialog.value = true },
+        CardItem("BottomSheetScaffold实现底部弹窗", false, isCompleted = false) { },
+        CardItem("测试", false, isCompleted = false) {
+            DialogHelper.showTestDialog(context as FragmentActivity)
+        },
     )
 
     Column(modifier = Modifier.fillMaxSize()) {

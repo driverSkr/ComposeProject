@@ -26,6 +26,7 @@ import com.skydoves.bundler.intentOf
 //todo 11.多语言设置及语言切换
 //todo 12.谷歌登录、支付组件
 //todo 13.支付宝、微信支付组件
+//todo 14.边框渐变色
 class MainActivity : BaseActivityVBind<LayoutComposeContainerBinding>() {
 
     companion object {
