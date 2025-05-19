@@ -31,5 +31,7 @@ fun ProgressIndicatorView() {
             color = Color.Blue,
             trackColor = Color.Gray
         )
+        Text(text = "Marvels的加载进度组件")
+        Text(text = "Vikpea的任务列表进度条")
     }
 }

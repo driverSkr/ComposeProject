@@ -23,12 +23,12 @@ import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
-import coil.compose.SubcomposeAsyncImage
-import coil.compose.SubcomposeAsyncImageContent
-import coil.decode.GifDecoder
-import coil.request.ImageRequest
-import coil.request.repeatCount
+import coil3.compose.AsyncImage
+import coil3.compose.SubcomposeAsyncImage
+import coil3.compose.SubcomposeAsyncImageContent
+import coil3.gif.GifDecoder
+import coil3.gif.repeatCount
+import coil3.request.ImageRequest
 import com.ethan.compose.R
 import com.ethan.compose.ui.custom.view.TitleCardView
 

@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
@@ -31,6 +32,8 @@ fun TechniquePage() {
     val items1 = listOf(
         CardItem("Pair和Triple的使用", true, isCompleted = false),
         CardItem("aspectRatio设置宽高比", true, isCompleted = false),
+        CardItem("共享元素转场动画", true, isCompleted = false),
+        CardItem("模糊到清晰加载", true, isCompleted = false),
     )
 
     val items2 = listOf(
@@ -59,6 +62,6 @@ fun TechniquePage() {
         ListCardView(items = items2)
 
         Spacer(modifier = Modifier.height(20.dp))
-        ListCardView(items = items3)
+        ListCardView(items = items3, modifier = Modifier.navigationBarsPadding())
     }
 }

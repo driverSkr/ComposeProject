@@ -41,12 +41,12 @@ import com.ethan.compose.utils.invisible
  * 包含列表项的卡片视图
  */
 @Composable
-fun ListCardView(items: List<CardItem>) {
+fun ListCardView(items: List<CardItem>, modifier: Modifier = Modifier) {
     Card(
         shape = RoundedCornerShape(12.dp),
         colors = CardDefaults.cardColors(containerColor = White, contentColor = Black, disabledContainerColor = White, disabledContentColor = Black),
         elevation = CardDefaults.cardElevation(defaultElevation = 1.0.dp),
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .wrapContentHeight()
             .padding(horizontal = 12.dp),
