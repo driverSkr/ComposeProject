@@ -33,7 +33,7 @@ fun CustomPage() {
                 dialog.show()
             }
         },
-        CardItem("图片对比动画组件", true, isCompleted = false) {
+        CardItem("图片对比动画组件", true) {
             CustomPreviewActivity.launch(context, PageType.ImageComparePage)
         },
     )

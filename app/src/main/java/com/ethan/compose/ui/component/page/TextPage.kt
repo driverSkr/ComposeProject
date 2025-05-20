@@ -1,4 +1,4 @@
-package com.ethan.compose.ui.component.view
+package com.ethan.compose.ui.component.page
 
 import android.text.TextPaint
 import android.text.style.ClickableSpan
@@ -39,7 +39,7 @@ import com.ethan.compose.utils.TextSpanUtils
 /**
  * Text 对应View中的 TextView
  */
-fun TextView() {
+fun TextPage() {
     val brushColor = Brush.horizontalGradient(colorStops = arrayOf(0.5f to DarkOrange, 1f to Cyan))
 
     Column(

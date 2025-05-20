@@ -62,7 +62,7 @@ import com.ethan.compose.theme.NO_PADDING_TEXT_STYLE
 import com.ethan.compose.theme.Red
 import com.ethan.compose.theme.Transparent
 import com.ethan.compose.theme.White
-import com.ethan.compose.ui.component.view.ClickableText
+import com.ethan.compose.ui.component.page.ClickableText
 import com.ethan.compose.utils.NetWorkHelper
 import com.ethan.compose.utils.ToastType
 import com.ethan.compose.utils.antiShakeClick

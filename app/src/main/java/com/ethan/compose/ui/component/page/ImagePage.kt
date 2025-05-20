@@ -1,4 +1,4 @@
-package com.ethan.compose.ui.component.view
+package com.ethan.compose.ui.component.page
 
 import android.graphics.BitmapFactory
 import androidx.compose.foundation.Image
@@ -37,7 +37,7 @@ import com.ethan.compose.ui.custom.view.TitleCardView
 /**
  * Image 对应View中的 ImageView
  */
-fun ImageView() {
+fun ImagePage() {
 
     val context = LocalContext.current
 

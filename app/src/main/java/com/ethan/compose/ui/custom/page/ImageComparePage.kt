@@ -47,7 +47,7 @@ fun ImageComparePage() {
 
         Spacer(modifier = Modifier.height(20.dp))
         Text("带文字对比动画", color = Black)
-        Box(modifier = Modifier.width(180.dp).height(360.dp).clip(RoundedCornerShape(6.dp))) {
+        Box(modifier = Modifier.width(200.dp).height(300.dp).clip(RoundedCornerShape(6.dp))) {
             ImageWithTextContrastView()
         }
     }

@@ -21,11 +21,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ethan.compose.theme.White
 import com.ethan.compose.ui.component.page.swipe.SwipeActivity
-import com.ethan.compose.ui.component.view.ButtonView
-import com.ethan.compose.ui.component.view.ImageView
-import com.ethan.compose.ui.component.view.ProgressIndicatorView
-import com.ethan.compose.ui.component.view.TextFieldView
-import com.ethan.compose.ui.component.view.TextView
 import com.ethan.compose.ui.custom.model.CardItem
 import com.ethan.compose.ui.custom.view.ListCardView
 import com.ethan.compose.ui.custom.view.StatusBarsView
@@ -45,31 +40,31 @@ fun ComponentPage() {
     val dialog = bottomDialog(showView.intValue)
 
     val items = listOf(
-        CardItem("Text", true) {
+        CardItem("Text", false) {
             showView.intValue = 0
             scope.launch {
                 dialog.show()
             }
         },
-        CardItem("Button", true) {
+        CardItem("Button", false) {
             showView.intValue = 1
             scope.launch {
                 dialog.show()
             }
         },
-        CardItem("Image", true) {
+        CardItem("Image", false) {
             showView.intValue = 2
             scope.launch {
                 dialog.show()
             }
         },
-        CardItem("ProgressIndicator", true) {
+        CardItem("ProgressIndicator", false) {
             showView.intValue = 3
             scope.launch {
                 dialog.show()
             }
         },
-        CardItem("TextField", true) {
+        CardItem("TextField", false) {
             showView.intValue = 4
             scope.launch {
                 dialog.show()
@@ -108,11 +103,11 @@ fun bottomDialog(showView: Int): SheetState {
         ) {
             AnimatedContent(showView, label = "") {
                 when (it) {
-                    0 -> TextView()
-                    1 -> ButtonView()
-                    2 -> ImageView()
-                    3 -> ProgressIndicatorView()
-                    4 -> TextFieldView()
+                    0 -> TextPage()
+                    1 -> ButtonPage()
+                    2 -> ImagePage()
+                    3 -> ProgressIndicatorPage()
+                    4 -> TextFieldPage()
                 }
             }
         }

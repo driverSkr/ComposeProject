@@ -24,6 +24,8 @@ val Purple1F1B26 = Color(0xFF1F1B26)
 val ColorFF7762_20 = Color(0x33FF7762)
 val Color412D5C_20 = Color(0x33412D5C)
 val Color0XFF37255B = Color(0XFF37255B)
+val Purple8A49FF = Color(0xFF8A49FF)
+val Purple8A49FF_20 = Color(0x338A49FF)
 
 val Black = Color(0xFF000000) //纯黑
 val Black80 = Color(0xCC000000)
