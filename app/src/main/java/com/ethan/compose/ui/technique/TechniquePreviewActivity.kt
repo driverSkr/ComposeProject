@@ -12,6 +12,7 @@ import com.ethan.compose.theme.ComposeProjectTheme
 import com.ethan.compose.theme.Transparent
 import com.ethan.compose.ui.technique.model.PageType
 import com.ethan.compose.ui.technique.page.LanguagePage
+import com.ethan.compose.ui.technique.page.LoadAnimationPage
 import com.ethan.compose.ui.technique.page.TechniquePage
 import com.skydoves.bundler.bundle
 import com.skydoves.bundler.intentOf
@@ -38,7 +39,8 @@ class TechniquePreviewActivity : BaseActivityVBind<LayoutComposeContainerBinding
                         Surface(modifier = Modifier.fillMaxSize(), color = Transparent) {
                             when(pageType) {
                                 PageType.LanguagePage -> LanguagePage()
-                                else -> TechniquePage()
+                                PageType.LoadAnimation -> LoadAnimationPage()
+                                else -> LanguagePage()
                             }
                         }
                     }

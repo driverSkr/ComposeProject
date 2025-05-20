@@ -33,7 +33,7 @@ fun TechniquePage() {
         CardItem("Pair和Triple的使用", true, isCompleted = false),
         CardItem("aspectRatio设置宽高比", true, isCompleted = false),
         CardItem("共享元素转场动画", true, isCompleted = false),
-        CardItem("模糊到清晰加载", true, isCompleted = false),
+        CardItem("模糊到清晰加载", true, isCompleted = false) { TechniquePreviewActivity.launch(context, PageType.LoadAnimation) },
     )
 
     val items2 = listOf(

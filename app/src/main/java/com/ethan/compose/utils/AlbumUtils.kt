@@ -19,7 +19,6 @@ import com.blankj.utilcode.util.Utils
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
-import com.ethan.compose.R
 import jp.wasabeef.glide.transformations.BlurTransformation
 import java.io.File
 import java.io.IOException
@@ -39,9 +38,9 @@ object AlbumUtils {
         //第二步：加载高清原图
         Glide.with(context)
             .load(url)
-            .placeholder(R.mipmap.load_error_img) //默认占位图
+//            .placeholder(R.mipmap.load_error_img) //默认占位图
             .thumbnail(thumbnailRequest) //绑定缩略图
-            .transition(DrawableTransitionOptions.withCrossFade(500)) //渐变效果
+            .transition(DrawableTransitionOptions.withCrossFade(4000)) //渐变效果
             .into(imageView)
     }
 
