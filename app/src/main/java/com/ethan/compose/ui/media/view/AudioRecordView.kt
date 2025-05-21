@@ -31,13 +31,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.blankj.utilcode.util.PermissionUtils
 import com.ethan.compose.R
-import com.ethan.compose.ui.dialog.view.cloneProgressDialog
-import com.ethan.compose.ui.dialog.view.rememberConfirmDialog
 import com.ethan.compose.theme.Grey20
 import com.ethan.compose.theme.NO_PADDING_TEXT_STYLE
 import com.ethan.compose.theme.White
 import com.ethan.compose.theme.White10
 import com.ethan.compose.theme.White60
+import com.ethan.compose.ui.dialog.view.cloneProgressDialog
+import com.ethan.compose.ui.dialog.view.rememberConfirmDialog
 import com.ethan.compose.utils.AudioRecordHelper
 import com.ethan.compose.utils.MyPermissionUtils
 import com.ethan.compose.utils.ToastType
@@ -144,7 +144,7 @@ fun AudioRecordView(modifier: Modifier = Modifier, isNeedCutting: Boolean = fals
                             .padding(horizontal = 48.dp)
                             .antiShakeClick {
                                 scope.launch(Dispatchers.Default) {
-                                    val granted = MyPermissionUtils.checkRecordPermission(false, jump2Setting = false)
+                                    val granted = MyPermissionUtils.checkRecordPermission(false, permissionDialog)
                                     if (granted) {
                                         when(it) {
                                             AudioRecordHelper.RecordState.IDLE -> {
@@ -157,8 +157,6 @@ fun AudioRecordView(modifier: Modifier = Modifier, isNeedCutting: Boolean = fals
                                                 context.externalCacheDir?.let { dir -> audioHelper.startRecording(context, dir) }
                                             }
                                         }
-                                    } else {
-                                        permissionDialog.value = true
                                     }
                                 }
                             })

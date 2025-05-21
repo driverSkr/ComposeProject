@@ -70,16 +70,6 @@ class AudioRecordHelper {
 
         scope.launch {
             try {
-                // 检查录音权限（在协程中调用挂起函数）
-                val granted = withContext(Dispatchers.IO) {
-                    MyPermissionUtils.checkRecordPermission(false, jump2Setting = false)
-                }
-
-                if (!granted) {
-                    Log.w("AudioRecorder", "Recording permission denied")
-                    return@launch
-                }
-
                 val fileName = "segment_${System.currentTimeMillis()}.pcm"
                 val audioDir = File(outputDir, "cache_audio").apply { mkdirs() }
                 // 创建新的 PCM 分段文件

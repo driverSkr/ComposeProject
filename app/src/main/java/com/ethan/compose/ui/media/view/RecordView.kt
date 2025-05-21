@@ -33,7 +33,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.fragment.app.FragmentActivity
 import com.blankj.utilcode.util.PermissionUtils
 import com.ethan.compose.R
 import com.ethan.compose.theme.Grey20
@@ -41,8 +40,8 @@ import com.ethan.compose.theme.NO_PADDING_TEXT_STYLE
 import com.ethan.compose.theme.White
 import com.ethan.compose.theme.White10
 import com.ethan.compose.theme.White60
+import com.ethan.compose.ui.dialog.view.rememberConfirmDialog
 import com.ethan.compose.utils.AudioRecorder
-import com.ethan.compose.utils.DialogHelper
 import com.ethan.compose.utils.MyPermissionUtils
 import com.ethan.compose.utils.ToastType
 import com.ethan.compose.utils.antiShakeClick
@@ -62,6 +61,13 @@ fun RecordView(modifier: Modifier = Modifier) {
     var recordState by remember { mutableStateOf(RecordState.NotStarted) }
     var audioPath by remember { mutableStateOf("") }
     val recordPlayBtn = if (audioRecorder.isPlaying) R.drawable.svg_icon_record_play else R.drawable.svg_icon_record_pause
+    val permissionDialog = rememberConfirmDialog(
+        "请求权限",
+        "请求录音权限",
+        "去应用设置",
+        "取消",
+        { PermissionUtils.launchAppDetailsSettings() }
+    )
 
     // 确保在Composable退出时清理资源
     DisposableEffect(Unit) {
@@ -134,7 +140,7 @@ fun RecordView(modifier: Modifier = Modifier) {
                     .padding(horizontal = 48.dp)
                     .antiShakeClick {
                         scope.launch(Dispatchers.Default) {
-                            val granted = MyPermissionUtils.checkRecordPermission(false, jump2Setting = false)
+                            val granted = MyPermissionUtils.checkRecordPermission(false, permissionDialog)
                             if (granted) {
                                 if (!audioRecorder.isRecording && recordState != RecordState.Complete) {
                                     val fileName = "audio_${System.currentTimeMillis()}.mp3"
@@ -155,16 +161,6 @@ fun RecordView(modifier: Modifier = Modifier) {
                                     audioRecorder.stopRecording()
                                     recordState = RecordState.Complete
                                 }
-                            } else {
-                                DialogHelper.showConfirmDialog(
-                                    context as FragmentActivity,
-                                    "设置权限",
-                                    "请在系统设置中开启录音权限",
-                                    "前往设置",
-                                    "取消",
-                                    { PermissionUtils.launchAppDetailsSettings() }
-                                    ,{}
-                                )
                             }
                         }
                     })
